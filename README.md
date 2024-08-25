@@ -47,24 +47,24 @@ Ensure you have the following installed:
 
 3. Create a `.env` file in the root directory and configure your environment variables:
 
-   ```text
-PORT = 
-DB_HOST = 
-DB_USERNAME = 
-DB_PASSWORD = 
-DB_DIALECT =
-DB_PORT = 
-TEST_DB_NAME = 
-DEVELOP_DB_NAME = 
-PRODUCTION_DB_NAME = 
-SECRET_KEY = 
-GMAIL_USER = 
-GMAIL_PASS = 
-BUCKET_NAME = 
-BUCKET_REGION = 
-BUCKET_ACCESS_KEY = 
-BUCKET_SECRET_KEY = 
-   ```
+```
+   PORT 
+   DB_HOST = 
+   DB_USERNAME = 
+   DB_PASSWORD = 
+   DB_DIALECT =
+   DB_PORT = 
+   TEST_DB_NAME = 
+   DEVELOP_DB_NAME = 
+   PRODUCTION_DB_NAME = 
+   SECRET_KEY = 
+   GMAIL_USER = 
+   GMAIL_PASS = 
+   BUCKET_NAME = 
+   BUCKET_REGION = 
+   BUCKET_ACCESS_KEY = 
+   BUCKET_SECRET_KEY = 
+```
 
 4. Set up the database:
 
@@ -74,7 +74,7 @@ BUCKET_SECRET_KEY =
    npx sequelize-cli db:seed:all
    ```
 
-### Running the Application
+### Running the Application      
 
 To start the development server, run:
 
