@@ -22,21 +22,10 @@ const userDefinition = (sequelize, DataTypes) => {
       as: 'properties',
       onDelete: 'CASCADE',
     })
-
-    user.hasOne(models.verification_code, {
-      foreignKey: 'userId',
-      as: 'verification_code',
-      onDelete: 'CASCADE',
-    })
     user.hasOne(models.token, {
       foreignKey: 'userId',
       as: 'token',
       onDelete: 'CASCADE',
-    })
-    user.hasOne(models.affiliate, {
-      foreignKey: 'userId',
-      as: 'referCode',
-      onDelete: 'CASCADE'
     })
   }
   return user;
