@@ -17,16 +17,16 @@ const userDefinition = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
     })
 
-    user.hasMany(models.property, {
-      foreignKey: 'userId',
-      as: 'properties',
-      onDelete: 'CASCADE',
-    })
-    user.hasOne(models.token, {
-      foreignKey: 'userId',
-      as: 'token',
-      onDelete: 'CASCADE',
-    })
+    // user.hasMany(models.property, {
+    //   foreignKey: 'userId',
+    //   as: 'properties',
+    //   onDelete: 'CASCADE',
+    // })
+    // user.hasOne(models.token, {
+    //   foreignKey: 'userId',
+    //   as: 'token',
+    //   onDelete: 'CASCADE',
+    // })
   }
   return user;
 };
