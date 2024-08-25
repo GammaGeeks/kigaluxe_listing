@@ -2,7 +2,7 @@
 	"name": "kigaluxe",
 	"version": "1.0.0",
 	"main": "src/index.js",
-	"type": "commonjs",
+	"type": "module",
 	"scripts": {
 		"test": "nyc --reporter=text --reporter=lcov jest",
 		"build": "rimraf dist && babel src --out-dir dist  --copy-files",
@@ -10,7 +10,7 @@
 		"dev": "nodemon --exec babel-node src/index.js",
 		"lint": "eslint ./src",
 		"coverage": "nyc npm run test",
-		"db:create": "npx sequelize-cli db:create",
+		"db:create": " npx sequelize-cli db:create --config src/database/config/config.js",
 		"drop_migrate_seed": "npm run droptables && npm run migrate && npm run seed",
 		"migrate": "npx sequelize-cli db:migrate",
 		"seed": "npx sequelize-cli db:seed:all",
