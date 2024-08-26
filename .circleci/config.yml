@@ -1,0 +1,95 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:16  # Specify the Node.js version (adjust as needed)
+    working_directory: ~/repo
+
+jobs:
+  install:
+    executor: node-executor
+    steps:
+      - checkout  # Check out the source code
+      - run:
+          name: Install dependencies
+          command: npm install
+
+  test:
+    docker:
+      - image: circleci/node:16  # Node.js Docker image
+      - image: cimg/python:3.10
+        environment:
+          TEST_DATABASE_URL: postgresql://postgres@localhost/circle_test
+
+    # Service container image
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: postgres
+    steps:
+      - checkout  # Check out the source code
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client
+      - run: whoami
+      # - run:
+      #     name: Wait for PostgreSQL to start
+      #     command: |
+      #       echo "Waiting for PostgreSQL to be ready..."
+      #       until pg_isready -h 127.0.0.1 -p 5432 -U postgres; do
+      #         echo "PostgreSQL not ready yet, waiting..."
+      #         sleep 2
+      #       done
+      #       echo "PostgreSQL is ready!"
+      # - run:
+      #     name: Set up database
+      #     command: |
+      #       psql -h 127.0.0.1 -U postgres -c "CREATE DATABASE kigaluxe_test;"
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run Sequelize Droptables
+          command: npm run droptables:test
+
+      - run:
+          name: Run Sequelize migrations
+          command: npm run migrate:test
+      - run:
+          name: Run Sequelize seeders
+          command: npm run seed:test
+      - run:
+          name: Run tests
+          command: npm test
+
+  build:
+    executor: node-executor
+    steps:
+      - checkout  # Check out the source code
+      - run:
+          name: Build application
+          command: npm run build  # If you have a build script
+
+  deploy:
+    executor: node-executor
+    steps:
+      - checkout  # Check out the source code
+      - run:
+          name: Deploy application
+          command: |
+            echo "Deploying application..."
+            # Add your deployment commands here, e.g., deploying to a server
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install
+      - test:
+          requires:
+            - install
+      # - build:
+      #     requires:
+      #       - test
+      # - deploy:
+      #     requires:
+      #       - build
