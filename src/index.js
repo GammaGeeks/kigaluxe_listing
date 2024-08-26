@@ -6,7 +6,7 @@ import session from 'express-session'
 import path from 'path'
 import swagger from 'swagger-ui-express'
 
-//import allRoutes from './routes'
+import allRoutes from './routes'
 import apiDocumentation from '../swagger.json'
 
 dotenv.config()
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 })
 
 app.use(`/api/documentation`, swagger.serve, swagger.setup(apiDocumentation));
-//app.use('/api', allRoutes)
+app.use('/api', allRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
