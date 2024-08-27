@@ -15,7 +15,7 @@ router.use(propertiesRoutes)
 // router.use(searchRoute)
 router.use(blogRoutes)
 // router.use(commentRoutes)
-// router.use(appointmentRoutes)
+router.use(appointmentRoutes)
 // router.use(shareRoutes)
 
 export default router

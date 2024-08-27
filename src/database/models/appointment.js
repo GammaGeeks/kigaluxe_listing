@@ -11,6 +11,13 @@ const appointmentDefinition = (sequelize, DataTypes) => {
     updatedAt: { type: DataTypes.DATE }
   }, {})
 
+  appointment.associate = (models) => {
+    appointment.belongsTo(models.category, {
+      foreignKey: 'type',
+      as: 'typeof',
+      onDelete: 'CASCADE'
+    })
+  }
   return appointment
 }
 
