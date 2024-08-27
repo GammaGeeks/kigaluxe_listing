@@ -1,11 +1,30 @@
 /* eslint-disable require-jsdoc */
+import { Sequelize } from 'sequelize';
 import models from '../../database/models';
 
-const { appointment } = models;
+const { appointment, category } = models;
 
 class appointmentDB {
   static async findAllAppointments() {
-    const allAppointments = await appointment.findAll()
+    const allAppointments = await appointment.findAll({
+      include: [
+        {
+          model: category,
+          as: 'typeof',
+          attributes: []
+        },
+      ],
+      attributes: [
+        [
+          Sequelize.literal(
+            `CONCAT("firstName",' ', "lastName")`
+          ),
+          'Names'
+        ],
+        [Sequelize.col('typeof.name'), 'type'], 'email', 'price', 'phoneNumber', 'isCompleted',
+        ['createdAt', 'received'], 'id'
+      ]
+    })
 
     return allAppointments
   }

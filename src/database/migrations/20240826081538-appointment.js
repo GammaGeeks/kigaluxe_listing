@@ -21,7 +21,12 @@ const up = (queryInterface, Sequelize) => queryInterface.createTable('appointmen
     type: Sequelize.INTEGER
   },
   type: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    references: {
+      model: 'categories',
+      key: 'id'
+    },
+    onDelete: 'CASCADE'
   },
   price: {
     type: Sequelize.INTEGER

@@ -12,6 +12,11 @@ const categoryDefinition = (sequelize, DataTypes) => {
       as: 'type',
       onDelete: 'CASCADE',
     })
+    category.hasMany(models.appointment, {
+      foreignKey: 'type',
+      as: 'ntype',
+      onDelete: 'CASCADE'
+    })
   }
 
   return category
