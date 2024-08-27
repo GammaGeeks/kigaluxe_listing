@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/appointment', asyncErrorHandler(appointmentController.getAllAppointments))
 router.post('/appointment', asyncErrorHandler(appointmentController.postAppointment))
-router.put('/appointment/:id', verifyToken, /*isAdmin,*/asyncErrorHandler(appointmentController.updateAppointment))
-router.delete('/appointment/:id', verifyToken, /*isAdmin8,*/ asyncErrorHandler(appointmentController.deleteAppointment))
+router.put('/appointment/:id', verifyToken, asyncErrorHandler(appointmentController.updateAppointment))
+router.delete('/appointment/:id', verifyToken, asyncErrorHandler(appointmentController.deleteAppointment))
 
 export default router
