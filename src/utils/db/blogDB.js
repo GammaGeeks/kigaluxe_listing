@@ -38,7 +38,7 @@ class blogService {
         include: [{
           model: user,
           as: 'user',
-          attributes: ['firstname', 'lastname']
+          attributes: ['firstName', 'lastName']
         }]
       }] })
     return currentBlog
