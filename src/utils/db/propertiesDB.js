@@ -34,7 +34,7 @@ class propertiesDB {
           [Sequelize.col('type.name'), 'property_type'],
           [
             Sequelize.literal(
-              `CONCAT("place"."province", ' - ', "place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+              `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
             ),
             'location'
           ],
@@ -106,7 +106,7 @@ class propertiesDB {
         [Sequelize.col('type.name'), 'property_type'],
         [
           Sequelize.literal(
-            `CONCAT("place"."province", ' - ', "place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+            `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
           ),
           'location'
         ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds'
