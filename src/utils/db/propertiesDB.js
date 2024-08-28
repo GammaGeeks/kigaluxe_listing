@@ -87,7 +87,30 @@ class propertiesDB {
 
   static async findProperty(column, value) {
     const holder = await property.findAll({
-      where: { [column]: value }
+      where: { [column]: value },
+      include: [
+        {
+          model: category,
+          as: 'type',
+          attributes: [],
+          required: true
+        },
+        {
+          model: place,
+          as: 'place',
+          attributes: [],
+          required: true
+        }],
+      attributes: [
+        'id', 'title', 'details',
+        [Sequelize.col('type.name'), 'property_type'],
+        [
+          Sequelize.literal(
+            `CONCAT("place"."province", ' - ', "place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+          ),
+          'location'
+        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds'
+      ]
     });
     return holder
   }

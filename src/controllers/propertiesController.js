@@ -66,6 +66,14 @@ class propertiesController {
     }
   }
 
+  static async getOneProperty(req, res) {
+    const prop = await propertiesDB.findProperty('id', req.params.id)
+    res.json({
+      status: 200,
+      prop
+    })
+  }
+
   static async postProperties(req, res) {
     const nproperty = {
       title: req.body.title,
