@@ -6,10 +6,13 @@ import paginator from "../utils/paginator"
 async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
   const catHolder = array.map((element, index) => index)
-  console.log(catHolder)
   let { location, property_type, price, property_size } = req.query
   if (!location) location = "kigali"
-  if (!property_type) property_type = catHolder
+  if (!property_type) {
+    property_type = catHolder
+  } else {
+    property_type = property_type.slice(1, -1).split(',').map(Number)
+  }
   if (!price) {
     price = [1, 1000000000]
   } else {
