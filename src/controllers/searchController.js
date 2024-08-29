@@ -12,7 +12,11 @@ async function searchController(req, res) {
   } else {
     price = price.slice(1, -1).split(',').map(Number)
   }
-  if (!property_size) property_size = []
+  if (!property_size) {
+    property_size = []
+  } else {
+    property_size = property_size.slice(1, -1).split(',').map(Number)
+  }
   console.log(price)
   console.log(typeof (price[0]))
   const results = await propertiesDB.searchProperty(location, property_type, price, property_size)

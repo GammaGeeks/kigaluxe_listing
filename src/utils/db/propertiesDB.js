@@ -122,7 +122,7 @@ class propertiesDB {
         //  { location: { [Sequelize.Op.iLike]: `%${location}%` } },
         //   { property_type: { [Sequelize.Op.between]: property_type } },
           { price: { [Sequelize.Op.between]: price } },
-        //   { property_size: { [Sequelize.Op.between]: property_size } }
+          { property_size: { [Sequelize.Op.between]: property_size } }
         ]
       }
     });
