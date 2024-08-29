@@ -8,12 +8,12 @@ async function searchController(req, res) {
   if (!location) location = "null"
   if (!property_type) property_type = []
   if (!price) {
-    price = []
+    price = [1, 1000000000]
   } else {
     price = price.slice(1, -1).split(',').map(Number)
   }
   if (!property_size) {
-    property_size = []
+    property_size = [1, 1000000000]
   } else {
     property_size = property_size.slice(1, -1).split(',').map(Number)
   }
