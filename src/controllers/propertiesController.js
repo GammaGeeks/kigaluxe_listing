@@ -67,15 +67,34 @@ class propertiesController {
   }
 
   static async getOneProperty(req, res) {
-    const prop = await propertiesDB.findProperty('id', req.params.id)
-    const shortUrls = await Promise.all(
-      prop[0].imageIds.map((imageId) => s3_helper.generateUrl(imageId))
-    )
-    console.log(shortUrls)
-    res.json({
-      status: 200,
-      property: prop[0]
-    })
+    try {
+      const prop = await propertiesDB.findProperty('id', req.params.id);
+
+      if (!prop || prop.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: "Property not found"
+        });
+      }
+
+      const shortUrls = await Promise.all(
+        prop[0].imageIds.map((imageId) => s3_helper.generateUrl(imageId))
+      );
+
+      prop[0] = prop[0].toJSON();
+
+      prop[0].urls = shortUrls;
+
+      return res.json({
+        status: 200,
+        property: prop[0]
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        message: "An error occurred while fetching the property"
+      });
+    }
   }
 
   static async postProperties(req, res) {
