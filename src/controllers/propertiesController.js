@@ -68,9 +68,13 @@ class propertiesController {
 
   static async getOneProperty(req, res) {
     const prop = await propertiesDB.findProperty('id', req.params.id)
+    const shortUrls = await Promise.all(
+      prop[0].imageIds.map((imageId) => s3_helper.generateUrl(imageId))
+    )
+    console.log(shortUrls)
     res.json({
       status: 200,
-      prop
+      property: prop[0]
     })
   }
 
