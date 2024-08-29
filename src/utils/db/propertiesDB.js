@@ -8,7 +8,7 @@ class propertiesDB {
   static async getAllProperties() {
     const holder = await property.findAll({
       order: [['id', 'ASC']],
-      where: { isSold: false, isForSale: true },
+      where: { isSold: false },
       include: [
         {
           model: category,
@@ -120,11 +120,34 @@ class propertiesDB {
       where: {
         [Sequelize.Op.and]: [
         //  { location: { [Sequelize.Op.iLike]: `%${location}%` } },
-        //   { property_type: { [Sequelize.Op.between]: property_type } },
+          { property_type: { [Sequelize.Op.or]: property_type } },
           { price: { [Sequelize.Op.between]: price } },
           { property_size: { [Sequelize.Op.between]: property_size } }
         ]
-      }
+      },
+      include: [
+        {
+          model: category,
+          as: 'type',
+          attributes: [],
+          required: true
+        },
+        {
+          model: place,
+          as: 'place',
+          attributes: [],
+          required: true
+        }],
+      attributes: [
+        'id', 'title', 'details',
+        [Sequelize.col('type.name'), 'property_type'],
+        [
+          Sequelize.literal(
+            `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+          ),
+          'location'
+        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds'
+      ]
     });
     return holder
   }
