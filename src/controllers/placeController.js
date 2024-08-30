@@ -55,6 +55,23 @@ class placeController {
       })
     }
   }
+
+  static async deleteAPlace(req, res) {
+    const { id } = req.params
+    if (!await placeDB.findPlaceById(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: `no place with id:${id} found`
+      })
+    }
+    const isDeleted = await placeDB.deletePlace(id)
+    if (isDeleted) {
+      res.json({
+        status: 200,
+        message: `the place with id:${id} is deleted successfully`
+      })
+    }
+  }
 }
 
 export default placeController
