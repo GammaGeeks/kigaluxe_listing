@@ -5,6 +5,6 @@ import placeController from '../controllers/placeController';
 
 const router = Router();
 
-router.patch('/place', verifyToken, asyncErrorHandler(placeController.updatePlace))
+router.patch('/place/:id', verifyToken, asyncErrorHandler(placeController.updatePlace))
 
 export default router
