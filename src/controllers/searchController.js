@@ -15,7 +15,14 @@ async function searchController(req, res) {
   } else {
     location = [location]
     location = await placeDB.searchThrough(location)
-    location = location.map((place) => place.id)
+    if (location.length !== 0) {
+      location = location.map((place) => place.id)
+    } else {
+      return res.status(404).json({
+        status: 404,
+        error: `no properties found in that location`
+      })
+    }
   }
   if (!property_type) {
     property_type = catHolder
