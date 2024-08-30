@@ -43,5 +43,12 @@ class placeDB {
       { where: { id } })
     return updated
   }
+
+  static async findPlaceById(id) {
+    const newPlace = await place.findOne({
+      where: { id }
+    })
+    return newPlace
+  }
 }
 export default placeDB
