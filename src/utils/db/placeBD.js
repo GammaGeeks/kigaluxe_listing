@@ -50,5 +50,10 @@ class placeDB {
     })
     return newPlace
   }
+
+  static async deletePlace(id) {
+    const newPlace = await place.destroy({ where: { id } })
+    return newPlace
+  }
 }
 export default placeDB
