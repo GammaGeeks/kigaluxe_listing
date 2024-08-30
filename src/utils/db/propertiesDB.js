@@ -119,7 +119,7 @@ class propertiesDB {
     const holder = await property.findAll({
       where: {
         [Sequelize.Op.and]: [
-        //  { location: { [Sequelize.Op.iLike]: `%${location}%` } },
+          { location: { [Sequelize.Op.or]: location } },
           { property_type: { [Sequelize.Op.or]: property_type } },
           { price: { [Sequelize.Op.between]: price } },
           { property_size: { [Sequelize.Op.between]: property_size } }

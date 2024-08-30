@@ -8,8 +8,15 @@ async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
   const catHolder = array.map((element, index) => index)
   let { location, property_type, price, property_size } = req.query
-  if (!location) location = "kigali"
-  console.log(await placeDB.searchThrough(location))
+  if (!location) {
+    location = ['a', 'i', 'u', 'e', 'o']
+    location = await placeDB.searchThrough(location)
+    location = location.map((place) => place.id)
+  } else {
+    location = [location]
+    location = await placeDB.searchThrough(location)
+    location = location.map((place) => place.id)
+  }
   if (!property_type) {
     property_type = catHolder
   } else {
