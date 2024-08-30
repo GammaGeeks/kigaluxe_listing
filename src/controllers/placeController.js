@@ -3,6 +3,18 @@ import placeDB from '../utils/db/placeBD'
 import paginator from '../utils/paginator'
 
 class placeController {
+  static async createPlace(req, res) {
+    const { province, district, sector, knownName, description } = req.body
+    const entry = { province, district, sector, knownName, description }
+    const isSaved = await placeDB.addPlace(entry)
+    if (isSaved) {
+      return res.json({
+        status: 200,
+        message: 'place created successfully'
+      })
+    }
+  }
+
   static async updatePlace(req, res) {
     // initialising variables we need
     const id = req.params.id
@@ -26,7 +38,7 @@ class placeController {
     if (!column) {
       return res.status(403).json({
         status: 403,
-        error: 'column can\' be empty'
+        error: 'column can\'t be empty'
       })
     }
 
