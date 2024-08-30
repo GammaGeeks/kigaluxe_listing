@@ -6,6 +6,7 @@ import searchRoute from './searchRoute'
 import blogRoutes from './blogRoutes'
 import commentRoutes from './commentRoutes'
 import appointmentRoutes from './appoiontmentRoutes'
+import placeRoutes from './placeRotes'
 
 const router = Router()
 
@@ -16,6 +17,6 @@ router.use(searchRoute)
 router.use(blogRoutes)
 // router.use(commentRoutes)
 router.use(appointmentRoutes)
-// router.use(shareRoutes)
+router.use(placeRoutes)
 
 export default router

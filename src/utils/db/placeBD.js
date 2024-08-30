@@ -36,6 +36,24 @@ class placeDB {
       throw error;
     }
   }
-}
 
+  static async updatePlace(id, column, value) {
+    const updated = await place.update(
+      { [column]: value, updatedAt: new Date() },
+      { where: { id } })
+    return updated
+  }
+
+  static async findPlaceById(id) {
+    const newPlace = await place.findOne({
+      where: { id }
+    })
+    return newPlace
+  }
+
+  static async deletePlace(id) {
+    const newPlace = await place.destroy({ where: { id } })
+    return newPlace
+  }
+}
 export default placeDB
