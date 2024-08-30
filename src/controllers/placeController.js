@@ -10,6 +10,12 @@ class placeController {
     const column = req.query.column
 
     // handling emptyness scenarios
+    if (!await placeDB.findPlaceById(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: `no place with id:${id} found`
+      })
+    }
     if (!value) {
       return res.status(403).json({
         status: 403,
