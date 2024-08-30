@@ -2,12 +2,14 @@
 import { Sequelize } from "sequelize"
 import propertiesDB from "../utils/db/propertiesDB"
 import paginator from "../utils/paginator"
+import placeDB from "../utils/db/placeBD"
 
 async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
   const catHolder = array.map((element, index) => index)
   let { location, property_type, price, property_size } = req.query
   if (!location) location = "kigali"
+  console.log(await placeDB.searchThrough(location))
   if (!property_type) {
     property_type = catHolder
   } else {
