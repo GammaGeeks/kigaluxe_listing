@@ -36,6 +36,12 @@ class placeDB {
       throw error;
     }
   }
-}
 
+  static async updatePlace(id, column, value) {
+    const updated = await place.update(
+      { [column]: value },
+      { where: { id } })
+    return updated
+  }
+}
 export default placeDB
