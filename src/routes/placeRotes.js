@@ -7,5 +7,6 @@ const router = Router();
 
 router.post('/place', verifyToken, asyncErrorHandler(placeController.createPlace))
 router.patch('/place/:id', verifyToken, asyncErrorHandler(placeController.updatePlace))
+router.delete('/place/:id', verifyToken, asyncErrorHandler(placeController.deleteAPlace))
 
 export default router
