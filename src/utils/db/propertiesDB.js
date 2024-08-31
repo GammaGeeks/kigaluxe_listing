@@ -25,7 +25,7 @@ class propertiesDB {
         {
           model: rating,
           as: 'ratings',
-          attributes: [], // No need for individual rating fields
+          attributes: ['rates'], // No need for individual rating fields
           required: false // Allow properties without ratings
         }
       ],
@@ -50,6 +50,7 @@ class propertiesDB {
       },
       group: [
         'property.id',
+        'ratings.id',
         'type.id',
         'type.name',
         'place.id',
