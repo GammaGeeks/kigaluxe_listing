@@ -3,6 +3,19 @@ import placeDB from '../utils/db/placeBD'
 import paginator from '../utils/paginator'
 
 class placeController {
+  static async getAllPlace(req, res) {
+    // initializing the variables
+    const page = req.query.page || 1
+    const limit = req.query.limit || 10
+
+    const allPlaces = await placeDB.getAllPlace()
+
+    res.json({
+      status: 200,
+      places: paginator(allPlaces, page, limit)
+    })
+  }
+
   static async createPlace(req, res) {
     const { province, district, sector, knownName, description } = req.body
     const entry = { province, district, sector, knownName, description }
