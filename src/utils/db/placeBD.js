@@ -5,6 +5,13 @@ import models from '../../database/models';
 const { place } = models;
 
 class placeDB {
+  static async getAllPlace() {
+    const newPlace = await place.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
+    return newPlace
+  }
+
   static async addPlace(entry) {
     try {
       const newplace = await place.create({
