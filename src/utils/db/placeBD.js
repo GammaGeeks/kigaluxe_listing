@@ -6,7 +6,9 @@ const { place } = models;
 
 class placeDB {
   static async getAllPlace() {
-    const newPlace = await place.findAll()
+    const newPlace = await place.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
     return newPlace
   }
 
