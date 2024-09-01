@@ -108,6 +108,8 @@ class placeController {
         error: `no place with id:${id} found`
       })
     }
+    const place = await placeDB.findPlaceById(id)
+    await s3_helper.deleteObject(place.img)
     const isDeleted = await placeDB.deletePlace(id)
     if (isDeleted) {
       res.json({
