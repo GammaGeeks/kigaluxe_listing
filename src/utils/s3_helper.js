@@ -1,6 +1,6 @@
 /* eslint-disable require-jsdoc */
 import dotenv from 'dotenv'
-import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3"
+import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 dotenv.config()
@@ -38,6 +38,15 @@ class s3_helper {
     const command = new GetObjectCommand(getObjectParams);
     const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
     return url
+  }
+
+  static async deleteObject(Key) {
+    const input = {
+      Bucket: process.env.BUCKET_NAME,
+      Key
+    };
+    const command = new DeleteObjectCommand(input);
+    await s3.send(command);
   }
 }
 
