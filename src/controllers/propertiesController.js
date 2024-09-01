@@ -192,7 +192,7 @@ class propertiesController {
 
     try {
       await Promise.all(s3Promises);
-      const prop = await propertiesDB.updateProperty(req.property.id, 'imageIds', imageIds);
+      const prop = await propertiesDB.updateProperty(req.params.id, 'imageIds', imageIds);
       res.json({
         status: 200,
         message: "Property images uploaded successfully"
