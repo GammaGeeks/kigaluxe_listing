@@ -119,7 +119,7 @@ class placeController {
 
   static async addPlaceImg(req, res) {
     const id = req.params.id
-    const files = req.files
+    const files = req.files[0]
 
     if (!await placeDB.findPlaceById(id)) {
       return res.status(404).json({
@@ -137,15 +137,16 @@ class placeController {
     const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
     const key = `${randomImageName()}`;
     try {
-      s3_helper.s3_objPut(key, files.buffer, files.mimetype);
+      await s3_helper.s3_objPut(key, files.buffer, files.mimetype)
       await placeDB.updatePlace(id, 'img', key)
-      req.json({
+      res.json({
         status: 200,
         message: 'image added successfully'
       })
     } catch (error) {
       res.status(500).json({
         status: 500,
+        message: 'failure',
         error
       })
     }
