@@ -16,10 +16,16 @@ class placeController {
     const limit = req.query.limit || 10
 
     const allPlaces = await placeDB.getAllPlace()
+    const urls = await Promise.all(allPlaces.map((place) => s3_helper.generateUrl(place.img)))
+    const updated = allPlaces.map((element, index) => {
+      const holder = element.toJSON()
+      holder.url = urls[index]
+      return holder
+    })
 
     res.json({
       status: 200,
-      places: paginator(allPlaces, page, limit)
+      places: paginator(updated, page, limit)
     })
   }
 
@@ -135,7 +141,8 @@ class placeController {
       });
     }
     const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-    const key = `${randomImageName()}`;
+    const place = await placeDB.findPlaceById(id)
+    const key = (!place.img) ? `${randomImageName()}` : place.img
     try {
       await s3_helper.s3_objPut(key, files.buffer, files.mimetype)
       await placeDB.updatePlace(id, 'img', key)
