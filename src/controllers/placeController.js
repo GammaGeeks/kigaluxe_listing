@@ -141,7 +141,8 @@ class placeController {
       });
     }
     const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-    const key = `${randomImageName()}`;
+    const place = await placeDB.findPlaceById(id)
+    const key = (!place.img) ? `${randomImageName()}` : place.img
     try {
       await s3_helper.s3_objPut(key, files.buffer, files.mimetype)
       await placeDB.updatePlace(id, 'img', key)
