@@ -24,10 +24,9 @@ class s3_helper {
     const command = new PutObjectCommand(params)
     try {
       await s3.send(command)
+      return true
     } catch (error) {
-      return {
-        error: "failed to add to s3"
-      }
+      return false
     }
   }
 
