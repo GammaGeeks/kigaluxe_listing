@@ -20,12 +20,22 @@ class rateController {
       })
     }
 
+    const checkRate = await rateDB.findRateByEmailAndId(email, propertyId)
+
     try {
-      await rateDB.createRate({ propertyId, email, rates })
-      res.json({
-        status: 200,
-        message: 'rate saved successfully',
-      })
+      if (!checkRate) {
+        await rateDB.createRate({ propertyId, email, rates })
+        res.json({
+          status: 200,
+          message: 'rate saved successfully',
+        })
+      } else {
+        await rateDB.rateUpdate(checkRate.id, rates)
+        res.json({
+          status: 200,
+          message: 'rate updated successfully',
+        })
+      }
     } catch (error) {
       res.status({
         status: 500,
