@@ -6,11 +6,12 @@ const up = async (queryInterface, Sequelize) => {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    userId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id'
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
       }
     },
     propertyId: {
@@ -18,10 +19,16 @@ const up = async (queryInterface, Sequelize) => {
       references: {
         model: 'properties',
         key: 'id'
-      }
+      },
+      allowNull: false
     },
     rates: {
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 5,
+      }
     },
     createdAt: {
       allowNull: false,
