@@ -205,6 +205,15 @@ class propertiesController {
       });
     }
   }
+
+  static async featured(req, res) {
+    const property = await propertiesDB.getMostRated()
+    res.json({
+      status: 200,
+      message: 'property found',
+      property
+    })
+  }
 }
 
 export default propertiesController

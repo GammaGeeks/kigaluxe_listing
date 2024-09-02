@@ -8,6 +8,7 @@ const router = Router();
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
+router.get('/properties/featured', asyncErrorHandler(propertiesController.featured))
 router.get('/properties', asyncErrorHandler(propertiesController.getProperties))
 router.get('/properties/:id', asyncErrorHandler(propertiesController.getOneProperty))
 router.post('/properties', verifyToken, asyncErrorHandler(propertiesController.postProperties))

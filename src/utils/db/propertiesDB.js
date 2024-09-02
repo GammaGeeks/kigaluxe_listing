@@ -104,7 +104,7 @@ class propertiesDB {
         }],
       attributes: [
         'id', 'title', 'details',
-        [Sequelize.col('type.name'), 'property_type'],
+        [Sequelize.col('type.name'), 'property_type'], 'property_size',
         [
           Sequelize.literal(
             `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
@@ -190,6 +190,64 @@ class propertiesDB {
     })
 
     return record
+  }
+
+  static async getMostRated() {
+    const holder = await property.findAll({
+      order: [['rates', 'DESC']],
+      where: { isSold: false },
+      include: [
+        {
+          model: category,
+          as: 'type',
+          attributes: ['id', 'name'],
+          required: true
+        },
+        {
+          model: place,
+          as: 'place',
+          attributes: ['id', 'province', 'district', 'sector', 'knownName'],
+          required: true
+        },
+        {
+          model: rating,
+          as: 'ratings',
+          attributes: [], // No need for individual rating fields
+          required: false // Allow properties without ratings
+        }
+      ],
+      attributes: {
+        include: [
+          [Sequelize.col('type.name'), 'property_type'],
+          [
+            Sequelize.literal(
+              `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+            ),
+            'location'
+          ],
+          [
+            Sequelize.fn(
+              'ROUND',
+              Sequelize.fn('COALESCE', Sequelize.fn('AVG', Sequelize.col('ratings.rates')), 0),
+              1
+            ),
+            'rates'
+          ]
+        ]
+      },
+      group: [
+        'property.id',
+        'ratings.id',
+        'type.id',
+        'type.name',
+        'place.id',
+        'place.province',
+        'place.district',
+        'place.sector',
+        'place.knownName'
+      ],
+    });
+    return holder[0];
   }
 }
 
