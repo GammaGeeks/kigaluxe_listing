@@ -6,12 +6,18 @@ class rateController {
     const propertyId = req.params.propId
     const { email, rates } = req.body
 
+    if (!email) {
+      return res.status(403).json({
+        status: 403,
+        error: 'an email can\'t be empty'
+      })
+    }
+
     try {
-      const newRate = await rateDB.createRate({ propertyId, email, rates })
+      await rateDB.createRate({ propertyId, email, rates })
       res.json({
         status: 200,
         message: 'rate saved successfully',
-        newRate
       })
     } catch (error) {
       res.status({
