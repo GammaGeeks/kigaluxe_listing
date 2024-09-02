@@ -13,7 +13,7 @@ class rateController {
       })
     }
 
-    if (!rates || rates > 6) {
+    if (!rates || rates > 5) {
       return res.status(403).json({
         status: 403,
         error: 'a rate can\'t empty or greater than 5'
