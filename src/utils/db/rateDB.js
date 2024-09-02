@@ -1,4 +1,5 @@
 /* eslint-disable require-jsdoc */
+import { where } from 'sequelize'
 import model from '../../database/models'
 
 const { rating } = model
@@ -17,11 +18,22 @@ class rateDB {
     }
   }
 
-  static async findRateByEmailAndId(email, id) {
+  static async findRateByEmailAndId(email, propertyId) {
     const newRate = await rating.findOne({
-      where: { id, email }
+      where: { propertyId, email }
     })
     return newRate
+  }
+
+  static async rateUpdate(id, rates) {
+    try {
+      const newRate = await rating.update(
+        { rates }, { where: { id }
+        })
+      return newRate
+    } catch (error) {
+      return error
+    }
   }
 }
 
