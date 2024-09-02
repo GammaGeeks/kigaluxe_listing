@@ -14,6 +14,9 @@ const up = (queryInterface, Sequelize) => queryInterface.createTable('users', {
   email: {
     type: Sequelize.STRING,
     unique: true,
+    validate: {
+      isEmail: true
+    }
   },
   phoneNumber: {
     type: Sequelize.STRING,
