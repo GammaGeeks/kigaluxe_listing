@@ -104,7 +104,7 @@ class propertiesDB {
         }],
       attributes: [
         'id', 'title', 'details',
-        [Sequelize.col('type.name'), 'property_type'],
+        [Sequelize.col('type.name'), 'property_type'], 'property_size',
         [
           Sequelize.literal(
             `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
