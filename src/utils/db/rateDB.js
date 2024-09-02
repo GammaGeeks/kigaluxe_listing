@@ -19,10 +19,14 @@ class rateDB {
   }
 
   static async findRateByEmailAndId(email, propertyId) {
-    const newRate = await rating.findOne({
-      where: { propertyId, email }
-    })
-    return newRate
+    try {
+      const newRate = await rating.findOne({
+        where: { propertyId, email }
+      })
+      return newRate
+    } catch (error) {
+      return error
+    }
   }
 
   static async rateUpdate(id, rates) {
