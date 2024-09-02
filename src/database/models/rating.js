@@ -1,6 +1,6 @@
 const ratingDefinition = (sequelize, DataTypes) => {
   const rating = sequelize.define('rating', {
-    userId: { type: DataTypes.INTEGER },
+    email: { type: DataTypes.STRING },
     propertyId: { type: DataTypes.INTEGER },
     rates: { type: DataTypes.INTEGER },
     createdAt: { type: DataTypes.DATE },
@@ -12,12 +12,7 @@ const ratingDefinition = (sequelize, DataTypes) => {
       foreignKey: 'propertyId',
       as: 'property',
       onDelete: 'CASCADE'
-    });
-    rating.belongsTo(models.user, {
-      foreignKey: 'userId',
-      as: 'user',
-      onDelete: 'CASCADE'
-    });
+    })
   }
 
   return rating;

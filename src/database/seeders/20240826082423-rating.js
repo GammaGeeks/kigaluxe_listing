@@ -1,139 +1,139 @@
 const ratings = [
   {
-    userId: 1,
+    email: 'johndoe@gmail.com',
     propertyId: 1,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 1,
+    email: 'janesmith@gmail.com',
     propertyId: 2,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 2,
+    email: 'emilyjohnson@gmail.com',
     propertyId: 3,
     rates: 3,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 2,
+    email: 'michealwilliams@gmail.com',
     propertyId: 4,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 3,
+    email: 'sarahbrown@gmail.com',
     propertyId: 5,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 3,
+    email: 'adolphe@gmail.com',
     propertyId: 1,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 4,
+    email: 'ngoga@gmail.com',
     propertyId: 4,
     rates: 2,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 4,
+    email: 'eric@gmail.com',
     propertyId: 2,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 5,
+    email: 'patrick@gmail.com',
     propertyId: 3,
     rates: 3,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 5,
+    email: 'alpha@gmail.com',
     propertyId: 2,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 1,
+    email: 'david@gmail.com',
     propertyId: 4,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 2,
+    email: 'felix@gmail.com',
     propertyId: 1,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 3,
+    email: 'alice@gmail.com',
     propertyId: 3,
     rates: 3,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 4,
+    email: 'aline@gmail.com',
     propertyId: 4,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 5,
+    email: 'oliva@gmail.com',
     propertyId: 5,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 1,
+    email: 'soso@gmail.com',
     propertyId: 1,
     rates: 4,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 2,
+    email: 'esther@gmail.com',
     propertyId: 2,
     rates: 3,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 3,
+    email: 'philos@gmail.com',
     propertyId: 3,
     rates: 2,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 4,
+    email: 'lamar@gmail.com',
     propertyId: 4,
     rates: 5,
     createdAt: new Date(),
     updatedAt: new Date()
   },
   {
-    userId: 5,
+    email: 'kelly@gmail.com',
     propertyId: 5,
     rates: 4,
     createdAt: new Date(),
