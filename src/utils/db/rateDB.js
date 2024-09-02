@@ -16,6 +16,13 @@ class rateDB {
       return error
     }
   }
+
+  static async findRateByEmailAndId(email, id) {
+    const newRate = await rating.findOne({
+      where: { id, email }
+    })
+    return newRate
+  }
 }
 
 export default rateDB
