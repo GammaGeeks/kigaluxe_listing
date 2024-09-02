@@ -13,6 +13,13 @@ class rateController {
       })
     }
 
+    if (!rates || rates > 6) {
+      return res.status(403).json({
+        status: 403,
+        error: 'a rate can\'t empty or greater than 5'
+      })
+    }
+
     try {
       await rateDB.createRate({ propertyId, email, rates })
       res.json({
