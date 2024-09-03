@@ -43,6 +43,17 @@ class blogService {
       }] })
     return currentBlog
   }
+
+  static async createBlog(entry) {
+    try {
+      const newBlog = await blog.create({
+        ...entry, createdAt: new Date(), updatedAt: new Date()
+      })
+      return newBlog
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 export default blogService
