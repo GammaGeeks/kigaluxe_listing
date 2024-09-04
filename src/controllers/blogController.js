@@ -67,6 +67,13 @@ class blogController {
     const id = req.params.id
     const { column, value } = req.body
 
+    if (!await blogService.findOneBlog(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: 'no blog with that id found'
+      })
+    }
+
     try {
       await blogService.updateBlog(id, column, value)
       res.status(201).json({
