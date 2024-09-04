@@ -1,5 +1,6 @@
 import blogService from "../utils/db/blogDB"
 import paginator from "../utils/paginator"
+import s3_helper from "../utils/s3_helper"
 
 /* eslint-disable require-jsdoc */
 class blogController {
@@ -110,8 +111,9 @@ class blogController {
 
   static async deleteBlog(req, res) {
     const id = req.params.id
+    const checkBlog = await blogService.findOneBlog(id)
 
-    if (!await blogService.findOneBlog(id)) {
+    if (!checkBlog) {
       return res.status(404).json({
         status: 404,
         error: 'no blog with that id found'
@@ -120,6 +122,10 @@ class blogController {
 
     try {
       await blogService.deleteB(id)
+      if (checkBlog.featuredImg) {
+        await s3_helper.deleteObject(checkBlog.featuredImg)
+      }
+
       res.json({
         status: 200,
         message: `blog with id:${id} deleted successfully`
