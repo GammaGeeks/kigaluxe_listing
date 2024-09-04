@@ -27,6 +27,14 @@ class blogController {
   static async addBlog(req, res) {
     const authorId = req.user.id
     const { title, content, categoryId } = req.body
+
+    if (!title) {
+      return res.status(403).json({
+        status: 403,
+        error: 'title can\'t be empty'
+      })
+    }
+
     try {
       await blogService.createBlog({ title, content, categoryId, authorId })
       res.json({
