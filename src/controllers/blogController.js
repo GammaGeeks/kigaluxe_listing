@@ -89,7 +89,13 @@ class blogController {
     }
 
     try {
-      await blogService.updateBlog(id, column, value)
+      const blog = await blogService.updateBlog(id, column, value)
+      if (!blog[0]) {
+        return res.status(403).json({
+          status: 403,
+          error: `${column} not saved`
+        })
+      }
       res.status(201).json({
         status: 201,
         message: `the ${column} has been updated successfully`
