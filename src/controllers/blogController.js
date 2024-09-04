@@ -107,6 +107,23 @@ class blogController {
       })
     }
   }
+
+  static async deleteBlog(req, res) {
+    const id = req.params.id
+
+    try {
+      await blogService.deleteB(id)
+      res.json({
+        status: 200,
+        message: `blog with id:${id} deleted successfully`
+      })
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
+      })
+    }
+  }
 }
 
 export default blogController
