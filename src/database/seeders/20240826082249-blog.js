@@ -4,7 +4,6 @@ const blogs = [
     content: 'Modern architecture is characterized by its simplification of form and the absence of decorative elements...',
     authorId: 1,
     categoryId: 1, // Assuming this corresponds to a category in your database
-    likes: 120,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -13,7 +12,6 @@ const blogs = [
     content: 'Urban living offers a range of challenges and opportunities, from access to amenities to the need for sustainable development...',
     authorId: 1,
     categoryId: 1,
-    likes: 98,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -22,7 +20,6 @@ const blogs = [
     content: 'Technology is rapidly changing the way we approach education, from online learning to interactive classrooms...',
     authorId: 2,
     categoryId: 2,
-    likes: 230,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -31,7 +28,6 @@ const blogs = [
     content: 'Artificial intelligence is revolutionizing various industries, from healthcare to finance...',
     authorId: 2,
     categoryId: 2,
-    likes: 145,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -40,7 +36,6 @@ const blogs = [
     content: 'Healthy eating is about more than just weight loss. It’s about feeling better both physically and mentally...',
     authorId: 3,
     categoryId: 3,
-    likes: 150,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -49,7 +44,6 @@ const blogs = [
     content: 'Regular exercise has numerous benefits, including improved physical health, mental well-being, and longevity...',
     authorId: 3,
     categoryId: 3,
-    likes: 175,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -58,7 +52,6 @@ const blogs = [
     content: 'The universe is vast and full of wonders. From distant galaxies to black holes, there’s always something new to learn...',
     authorId: 4,
     categoryId: 4,
-    likes: 300,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -67,7 +60,6 @@ const blogs = [
     content: 'Space exploration has led to numerous scientific discoveries and technological advancements...',
     authorId: 4,
     categoryId: 4,
-    likes: 260,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -76,7 +68,6 @@ const blogs = [
     content: 'Climate change is having a significant impact on wildlife around the world. From changing habitats to altered migration patterns...',
     authorId: 5,
     categoryId: 5,
-    likes: 180,
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -85,7 +76,6 @@ const blogs = [
     content: 'Sustainable living involves making choices that reduce your environmental impact and promote a healthier planet...',
     authorId: 5,
     categoryId: 5,
-    likes: 205,
     createdAt: new Date(),
     updatedAt: new Date()
   }
