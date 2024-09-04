@@ -58,6 +58,18 @@ class blogService {
       return error.message
     }
   }
+
+  static async updateBlog(id, column, value) {
+    try {
+      const newBlog = await blog.update(
+        { [column]: value },
+        { where: { id } }
+      )
+      return newBlog
+    } catch (error) {
+      return error.message
+    }
+  }
 }
 
 export default blogService
