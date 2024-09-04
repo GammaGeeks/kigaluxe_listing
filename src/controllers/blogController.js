@@ -62,6 +62,51 @@ class blogController {
       })
     }
   }
+
+  static async blogUpdate(req, res) {
+    const id = req.params.id
+    const { column, value } = req.body
+
+    if (!await blogService.findOneBlog(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: 'no blog with that id found'
+      })
+    }
+
+    if (!value) {
+      return res.status(403).json({
+        status: 403,
+        error: 'value can\'t be empty'
+      })
+    }
+
+    if (!column) {
+      return res.status(403).json({
+        status: 403,
+        error: 'column can\'t be empty'
+      })
+    }
+
+    try {
+      const blog = await blogService.updateBlog(id, column, value)
+      if (!blog[0]) {
+        return res.status(403).json({
+          status: 403,
+          error: `${column} not saved`
+        })
+      }
+      res.status(201).json({
+        status: 201,
+        message: `the ${column} has been updated successfully`
+      })
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
+      })
+    }
+  }
 }
 
 export default blogController
