@@ -47,7 +47,11 @@ class blogService {
   static async createBlog(entry) {
     try {
       const newBlog = await blog.create({
-        ...entry, createdAt: new Date(), updatedAt: new Date()
+        ...entry,
+        savedId: 0,
+        likes: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
       })
       return newBlog
     } catch (error) {
