@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import blogService from "../utils/db/blogDB"
 import paginator from "../utils/paginator"
 import s3_helper from "../utils/s3_helper"
@@ -129,6 +130,43 @@ class blogController {
       res.json({
         status: 200,
         message: `blog with id:${id} deleted successfully`
+      })
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
+      })
+    }
+  }
+
+  static async addImg(req, res) {
+    const id = req.params.id
+    const file = req.files[0]
+    const blog = await blogService.findOneBlog(id)
+    const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+
+    if (!blog) {
+      return res.status(404).json({
+        status: 404,
+        error: `no place with id:${id} found`
+      })
+    }
+
+    if (!file || file.length === 0) {
+      return res.status(400).json({
+        status: 400,
+        error: "No files were uploaded"
+      });
+    }
+
+    const key = (!blog.featuredImg) ? `${randomImageName()}` : blog.featuredImg
+
+    try {
+      await s3_helper.s3_objPut('blogImg', file.buffer, file.mimetype)
+      await blogService.updateBlog(id, 'featuredImg', key)
+      res.json({
+        status: 200,
+        message: 'img added successfully'
       })
     } catch (error) {
       res.status(500).json({
