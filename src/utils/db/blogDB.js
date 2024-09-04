@@ -70,6 +70,14 @@ class blogService {
       return error.message
     }
   }
+
+  static async deleteB(id) {
+    try {
+      await blog.destroy({ where: { id } })
+    } catch (error) {
+      return error.message
+    }
+  }
 }
 
 export default blogService
