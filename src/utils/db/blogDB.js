@@ -71,7 +71,7 @@ class blogService {
     }
   }
 
-  static async destroy(id) {
+  static async deleteB(id) {
     try {
       await blog.destroy({ where: { id } })
     } catch (error) {
