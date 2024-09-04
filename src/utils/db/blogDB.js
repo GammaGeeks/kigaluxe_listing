@@ -55,7 +55,7 @@ class blogService {
       })
       return newBlog
     } catch (error) {
-      return error
+      return error.message
     }
   }
 }
