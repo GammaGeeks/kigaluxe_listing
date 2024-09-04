@@ -19,6 +19,8 @@ class blogController {
 
   static async getOneBlog(req, res) {
     const blog = await blogService.findOneBlog(req.params.id)
+    const url = await s3_helper.generateUrl(blog.featuredImg)
+    console.log(url)
     res.json({
       status: 200,
       message: 'request was successful',
@@ -160,9 +162,10 @@ class blogController {
     }
 
     const key = (!blog.featuredImg) ? `${randomImageName()}` : blog.featuredImg
+    console.log(key)
 
     try {
-      await s3_helper.s3_objPut('blogImg', file.buffer, file.mimetype)
+      await s3_helper.s3_objPut(key, file.buffer, file.mimetype)
       await blogService.updateBlog(id, 'featuredImg', key)
       res.json({
         status: 200,
