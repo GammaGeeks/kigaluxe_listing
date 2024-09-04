@@ -81,6 +81,13 @@ class blogController {
       })
     }
 
+    if (!column) {
+      return res.status(403).json({
+        status: 403,
+        error: 'column can\'t be empty'
+      })
+    }
+
     try {
       await blogService.updateBlog(id, column, value)
       res.status(201).json({
