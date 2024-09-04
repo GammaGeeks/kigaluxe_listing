@@ -22,11 +22,8 @@ const up = (queryInterface, Sequelize) => queryInterface.createTable('blogs', {
   categoryId: {
     type: Sequelize.INTEGER
   },
-  savedId: {
-    type: Sequelize.INTEGER
-  },
-  likes: {
-    type: Sequelize.INTEGER
+  featuredImg: {
+    type: Sequelize.STRING
   },
   createdAt: {
     allowNull: false,
