@@ -35,6 +35,13 @@ class blogController {
       })
     }
 
+    if (!content) {
+      return res.status(403).json({
+        status: 403,
+        error: 'content can\'t be empty'
+      })
+    }
+
     try {
       await blogService.createBlog({ title, content, categoryId, authorId })
       res.json({
