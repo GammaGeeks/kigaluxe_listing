@@ -23,6 +23,23 @@ class blogController {
       blog
     })
   }
+
+  static async addBlog(req, res) {
+    const authorId = req.user.id
+    const { title, content, categoryId } = req.body
+    try {
+      await blogService.createBlog({ title, content, categoryId, authorId })
+      res.json({
+        status: 200,
+        message: 'blog added successfully'
+      })
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
+      })
+    }
+  }
 }
 
 export default blogController
