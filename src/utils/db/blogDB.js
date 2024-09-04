@@ -62,7 +62,7 @@ class blogService {
   static async updateBlog(id, column, value) {
     try {
       const newBlog = await blog.update(
-        { [column]: value },
+        { [column]: value, updatedAt: new Date() },
         { where: { id } }
       )
       return newBlog
