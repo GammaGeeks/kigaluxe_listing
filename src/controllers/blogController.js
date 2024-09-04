@@ -62,6 +62,24 @@ class blogController {
       })
     }
   }
+
+  static async blogUpdate(req, res) {
+    const id = req.params.id
+    const { column, value } = req.body
+
+    try {
+      await blogService.updateBlog(id, column, value)
+      res.status(201).json({
+        status: 201,
+        message: `the ${column} has been updated successfully`
+      })
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
+      })
+    }
+  }
 }
 
 export default blogController
