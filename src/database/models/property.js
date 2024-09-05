@@ -16,6 +16,10 @@ const propertyDefinition = (sequelize, DataTypes) => {
     bedrooms: { type: DataTypes.INTEGER },
     bathrooms: { type: DataTypes.INTEGER },
     isSold: { type: DataTypes.BOOLEAN },
+    hasPool: { type: DataTypes.BOOLEAN },
+    appliances: { type: DataTypes.ARRAY(DataTypes.STRING) },
+    yearBuilt: { type: DataTypes.DATE },
+    AC: { type: DataTypes.BOOLEAN },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
   }, {});
