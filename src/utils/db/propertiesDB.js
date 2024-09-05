@@ -231,7 +231,7 @@ class propertiesDB {
               Sequelize.fn('COALESCE', Sequelize.fn('AVG', Sequelize.col('ratings.rates')), 0),
               1
             ),
-            'rates'
+            'rates', 'hasPool', 'appliances', 'yearBuilt', 'AC'
           ]
         ]
       },
