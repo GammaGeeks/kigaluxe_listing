@@ -4,8 +4,7 @@ const blogDefinition = (sequelize, DataTypes) => {
     content: { type: DataTypes.TEXT },
     authorId: { type: DataTypes.INTEGER },
     categoryId: { type: DataTypes.INTEGER },
-    savedId: { type: DataTypes.INTEGER },
-    likes: { type: DataTypes.INTEGER },
+    featuredImg: { type: DataTypes.STRING },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
   }, {})
