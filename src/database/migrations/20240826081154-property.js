@@ -69,6 +69,18 @@ const up = async (queryInterface, Sequelize) => {
       type: Sequelize.BOOLEAN,
       defaultValue: false
     },
+    hasPool: {
+      type: Sequelize.BOOLEAN
+    },
+    appliances: {
+      type: Sequelize.ARRAY(Sequelize.STRING)
+    },
+    yearBuilt: {
+      type: Sequelize.DATE
+    },
+    AC: {
+      type: Sequelize.BOOLEAN
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
