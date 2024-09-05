@@ -8,8 +8,17 @@ class blogController {
   static async getAllBlogs(req, res) {
     const page = parseInt(req.query.page, 10) || 1
     const limit = parseInt(req.query.limit, 10) || 5
-    const blogs = await blogService.findAllBlogs(page, limit)
-    const pagData = paginator(blogs, page, limit)
+    const blogs = await blogService.findAllBlogs()
+    const urls = await Promise.all(blogs.map((element) => {
+      element.url = s3_helper.generateUrl(element.featuredImg)
+      return element.url
+    }))
+    const nBlogs = blogs.map((element, index) => {
+      element.toJSON()
+      element.dataValues.url = urls[index]
+      return element
+    })
+    const pagData = paginator(nBlogs, page, limit)
     res.json({
       status: 200,
       message: "request was successful",
