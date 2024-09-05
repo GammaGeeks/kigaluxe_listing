@@ -110,7 +110,7 @@ class propertiesDB {
             `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
           ),
           'location'
-        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds'
+        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds', 'hasPool', 'appliances', 'yearBuilt', 'AC'
       ]
     });
     return holder
@@ -147,7 +147,7 @@ class propertiesDB {
             `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
           ),
           'location'
-        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds'
+        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds', 'hasPool', 'appliances', 'yearBuilt', 'AC'
       ]
     });
     return holder
@@ -231,7 +231,7 @@ class propertiesDB {
               Sequelize.fn('COALESCE', Sequelize.fn('AVG', Sequelize.col('ratings.rates')), 0),
               1
             ),
-            'rates'
+            'rates', 'hasPool', 'appliances', 'yearBuilt', 'AC'
           ]
         ]
       },
