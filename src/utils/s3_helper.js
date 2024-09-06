@@ -48,6 +48,11 @@ class s3_helper {
     const command = new DeleteObjectCommand(input);
     await s3.send(command);
   }
+
+  static async newLevelUrl(key) {
+    const url = `https://d3r0pc058pah3g.cloudfront.net/${key}`
+    return url
+  }
 }
 
 export default s3_helper
