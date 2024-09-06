@@ -15,7 +15,7 @@ class propertiesController {
       const urls = await Promise.all(
         nproperty.map(async (prop) => {
           const shortUrls = await Promise.all(
-            prop.imageIds.map((imageId) => s3_helper.generateUrl(imageId))
+            prop.imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
           );
           return shortUrls;
         })
@@ -82,7 +82,7 @@ class propertiesController {
       }
 
       const shortUrls = await Promise.all(
-        prop[0].imageIds.map((imageId) => s3_helper.generateUrl(imageId))
+        prop[0].imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
       );
 
       prop[0] = prop[0].toJSON();
