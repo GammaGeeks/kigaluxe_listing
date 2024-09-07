@@ -211,7 +211,10 @@ class propertiesController {
   }
 
   static async featured(req, res) {
-    const property = await propertiesDB.getMostRated()
+    let property = await propertiesDB.getMostRated()
+    property = property.toJSON()
+    property.url = await Promise.all(property.imageIds.map((Element) => s3_helper.newLevelUrl(Element)))
+
     res.json({
       status: 200,
       message: 'property found',
