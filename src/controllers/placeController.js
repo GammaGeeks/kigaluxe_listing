@@ -16,7 +16,7 @@ class placeController {
     const limit = req.query.limit || 10
 
     const allPlaces = await placeDB.getAllPlace()
-    const urls = await Promise.all(allPlaces.map((place) => s3_helper.generateUrl(place.img)))
+    const urls = await Promise.all(allPlaces.map((place) => s3_helper.newLevelUrl(place.img)))
     const updated = allPlaces.map((element, index) => {
       const holder = element.toJSON()
       holder.url = urls[index]
