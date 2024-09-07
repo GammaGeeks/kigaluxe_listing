@@ -10,7 +10,7 @@ class blogController {
     const limit = parseInt(req.query.limit, 10) || 5
     const blogs = await blogService.findAllBlogs()
     const urls = await Promise.all(blogs.map((element) => {
-      element.url = s3_helper.generateUrl(element.featuredImg)
+      element.url = s3_helper.newLevelUrl(element.featuredImg)
       return element.url
     }))
     const nBlogs = blogs.map((element, index) => {
