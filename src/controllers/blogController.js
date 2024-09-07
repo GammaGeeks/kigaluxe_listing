@@ -29,7 +29,7 @@ class blogController {
   static async getOneBlog(req, res) {
     let blog = await blogService.findOneBlog(req.params.id)
     blog = blog.toJSON()
-    blog.url = await s3_helper.generateUrl(blog.featuredImg)
+    blog.url = await s3_helper.newLevelUrl(blog.featuredImg)
     res.json({
       status: 200,
       message: 'request was successful',
