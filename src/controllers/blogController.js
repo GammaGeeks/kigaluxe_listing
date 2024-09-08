@@ -10,7 +10,7 @@ class blogController {
     const limit = parseInt(req.query.limit, 10) || 5
     const blogs = await blogService.findAllBlogs()
     const urls = await Promise.all(blogs.map((element) => {
-      element.url = s3_helper.generateUrl(element.featuredImg)
+      element.url = s3_helper.newLevelUrl(element.featuredImg)
       return element.url
     }))
     const nBlogs = blogs.map((element, index) => {
@@ -29,7 +29,7 @@ class blogController {
   static async getOneBlog(req, res) {
     let blog = await blogService.findOneBlog(req.params.id)
     blog = blog.toJSON()
-    blog.url = await s3_helper.generateUrl(blog.featuredImg)
+    blog.url = await s3_helper.newLevelUrl(blog.featuredImg)
     res.json({
       status: 200,
       message: 'request was successful',
