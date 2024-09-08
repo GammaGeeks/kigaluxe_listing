@@ -137,6 +137,11 @@ class propertiesDB {
     return holder
   }
 
+  /*
+***********************************************************************************************************
+------------------------------- searchProperty controller ---------------------------------------------------
+***********************************************************************************************************
+*/
   static async searchProperty(location, property_type, price, property_size) {
     const holder = await property.findAll({
       where: {
