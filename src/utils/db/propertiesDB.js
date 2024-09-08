@@ -5,6 +5,11 @@ const { place, property, category, user, rating } = models;
 /* eslint-disable require-jsdoc */
 
 class propertiesDB {
+  /*
+***********************************************************************************************************
+------------------------------- getAllProperties controller ---------------------------------------------------
+***********************************************************************************************************
+*/
   static async getAllProperties() {
     const holder = await property.findAll({
       order: [['id', 'ASC']],
