@@ -25,7 +25,7 @@ class placeController {
 
     res.json({
       status: 200,
-      places: paginator(updated, page, limit)
+      data: paginator(updated, page, limit)
     })
   }
 
