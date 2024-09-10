@@ -8,7 +8,7 @@ const router = Router();
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
-router.get('/place', asyncErrorHandler(placeController.getAllPlace))
+router.get('/places', asyncErrorHandler(placeController.getAllPlace))
 router.post('/place', verifyToken, asyncErrorHandler(placeController.createPlace))
 router.post('/place/img/:id', verifyToken, upload.array('avatar'), asyncErrorHandler(placeController.addPlaceImg))
 router.patch('/place/:id', verifyToken, asyncErrorHandler(placeController.updatePlace))

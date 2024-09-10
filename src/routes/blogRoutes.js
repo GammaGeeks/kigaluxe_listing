@@ -8,7 +8,7 @@ const router = Router();
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
-router.get('/blog', asyncErrorHandler(blogController.getAllBlogs))
+router.get('/blogs', asyncErrorHandler(blogController.getAllBlogs))
 router.get('/blog/:id', asyncErrorHandler(blogController.getOneBlog))
 router.post('/blog', verifyToken, asyncErrorHandler(blogController.addBlog))
 router.patch('/blog/:id', verifyToken, asyncErrorHandler(blogController.blogUpdate))
