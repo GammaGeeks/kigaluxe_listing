@@ -50,7 +50,7 @@ class s3_helper {
   }
 
   static async newLevelUrl(key) {
-    const url = `https://d32ff74noktmp6.cloudfront.net/${key}`
+    const url = `https://d3r0pc058pah3g.cloudfront.net/${key}`
     return url
   }
 }
