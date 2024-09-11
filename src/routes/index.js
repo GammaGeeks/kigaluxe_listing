@@ -6,7 +6,7 @@ import searchRoute from './searchRoute'
 import blogRoutes from './blogRoutes'
 import commentRoutes from './commentRoutes'
 import appointmentRoutes from './appoiontmentRoutes'
-import placeRoutes from './placeRotes'
+import placeRoutes from './placeRoutes'
 import rateRoutes from './rateRoutes'
 
 const router = Router()

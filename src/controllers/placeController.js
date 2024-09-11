@@ -25,7 +25,7 @@ class placeController {
 
     res.json({
       status: 200,
-      places: paginator(updated, page, limit)
+      data: paginator(updated, page, limit)
     })
   }
 
@@ -159,6 +159,23 @@ class placeController {
         error
       })
     }
+  }
+
+  /*
+***********************************************************************************************************
+------------------------------- getOnePlace controller ---------------------------------------------------
+***********************************************************************************************************
+*/
+
+  static async getOnePlace(req, res) {
+    let place = await placeDB.findPlaceById(req.params.id)
+    place = place.toJSON()
+    place.url = await s3_helper.newLevelUrl(place.img)
+    res.json({
+      status: 200,
+      message: 'request was successful',
+      place
+    })
   }
 }
 
