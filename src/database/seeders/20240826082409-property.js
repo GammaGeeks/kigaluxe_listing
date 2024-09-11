@@ -2,7 +2,7 @@ const properties = [
   {
     title: 'Spacious Family House',
     userId: 1,
-    imageIds: ['img1.webp', 'img2.webp'],
+    imageIds: ['img1.jpg', 'img2.jpg'],
     details: 'A spacious family house with modern amenities and a large backyard.',
     price: 350000,
     property_type: 1,
@@ -26,7 +26,7 @@ const properties = [
   {
     title: 'Modern Apartment',
     userId: 2,
-    imageIds: ['img3.webp', 'img4.webp'],
+    imageIds: ['img3.jpg', 'img4.jpg'],
     details: 'A modern apartment with a city view and close to public transport.',
     price: 200000,
     property_type: 2,
@@ -50,7 +50,7 @@ const properties = [
   {
     title: 'Luxurious Villa',
     userId: 3,
-    imageIds: ['img5.webp', 'img6.webp'],
+    imageIds: ['img5.jpg', 'img6.jpg'],
     details: 'A luxurious villa with a private pool and garden.',
     price: 750000,
     property_type: 3,
@@ -74,7 +74,7 @@ const properties = [
   {
     title: 'Cozy Cottage',
     userId: 4,
-    imageIds: ['img7.webp', 'img8.webp'],
+    imageIds: ['img7.jpg', 'img8.jpg'],
     details: 'A cozy cottage perfect for a quiet retreat.',
     price: 150000,
     property_type: 4,
@@ -122,7 +122,7 @@ const properties = [
   {
     title: 'Secluded Cabin',
     userId: 1,
-    imageIds: ['img11.jpg', 'img12.webp'],
+    imageIds: ['img11.jpg', 'img12.jpg'],
     details: 'A secluded cabin in the mountains, perfect for a getaway.',
     price: 180000,
     property_type: 6,
@@ -338,7 +338,7 @@ const properties = [
   {
     title: 'Warehouse',
     userId: 5,
-    imageIds: ['img29.webp', 'img30.webp'],
+    imageIds: ['img29.jpg', 'img30.jpg'],
     details: 'A large warehouse suitable for storage or industrial use.',
     price: 550000,
     property_type: 7,
