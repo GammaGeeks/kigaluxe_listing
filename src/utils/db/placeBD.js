@@ -60,6 +60,16 @@ class placeDB {
         {
           model: property,
           as: 'properties',
+          attributes: {
+            include: [
+              [
+                Sequelize.literal(
+                  `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
+                ),
+                'location'
+              ],
+            ]
+          },
         },
       ]
     })
