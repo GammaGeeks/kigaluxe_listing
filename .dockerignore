@@ -31,3 +31,10 @@
 **/dist
 LICENSE
 README.md
+dist
+node_modules
+.vscode
+.nyc_output
+coverage
+package-lock.json
+test.rest
