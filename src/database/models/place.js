@@ -13,7 +13,7 @@ const placeDefinition = (sequelize, DataTypes) => {
   place.associate = (models) => {
     place.hasMany(models.property, {
       foreignKey: 'location',
-      as: 'place',
+      as: 'properties',
       onDelete: 'CASCADE'
     });
   }

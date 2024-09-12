@@ -2,7 +2,7 @@
 import { Sequelize } from 'sequelize';
 import models from '../../database/models';
 
-const { place } = models;
+const { place, property } = models;
 
 class placeDB {
   static async getAllPlace() {
@@ -54,7 +54,14 @@ class placeDB {
 
   static async findPlaceById(id) {
     const newPlace = await place.findOne({
-      where: { id }
+      where: { id },
+      include:
+      [
+        {
+          model: property,
+          as: 'properties',
+        },
+      ]
     })
     return newPlace
   }
