@@ -12,11 +12,13 @@ ARG NODE_VERSION=20.15.0
 # Use node image for base image for all stages.
 FROM node:${NODE_VERSION}
 
-WORKDIR /kigaluxe-backend/
+WORKDIR /kigaluxe-backend
 
 # COPY public/ /KigaliXe_Backend/public
-COPY src/ /kigaluxe-backend/src
-COPY . /kigaluxe-backend/
+COPY . /kigaluxe-backend
+
+
+EXPOSE 3000
 
 RUN npm install
 
