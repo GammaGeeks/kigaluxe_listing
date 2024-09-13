@@ -22,6 +22,7 @@ const blogs = [
     content: 'Technology is rapidly changing the way we approach education, from online learning to interactive classrooms...',
     authorId: 2,
     categoryId: 2,
+    featuredImg: 'education.webp',
     createdAt: new Date(),
     updatedAt: new Date()
   },
