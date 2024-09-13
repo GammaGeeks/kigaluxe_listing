@@ -154,7 +154,7 @@ class blogController {
     const id = req.params.id
     const file = req.files[0]
     const blog = await blogService.findOneBlog(id)
-    const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+    const randomImageName = (bytes = 12) => crypto.randomBytes(bytes).toString('hex');
 
     if (!blog) {
       return res.status(404).json({
@@ -170,8 +170,7 @@ class blogController {
       });
     }
 
-    const key = (!blog.featuredImg) ? `blog/${randomImageName()}` : blog.featuredImg
-    console.log(key)
+    const key = (!blog.featuredImg) ? `blog/${id}-${randomImageName()}` : blog.featuredImg
 
     try {
       await s3_helper.s3_objPut(key, file.buffer, file.mimetype)
