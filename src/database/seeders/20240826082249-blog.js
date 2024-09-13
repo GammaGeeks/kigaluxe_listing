@@ -4,6 +4,7 @@ const blogs = [
     content: 'Modern architecture is characterized by its simplification of form and the absence of decorative elements...',
     authorId: 1,
     categoryId: 1, // Assuming this corresponds to a category in your database
+    featuredImg: 'Modern-architecture.jpg',
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -12,6 +13,7 @@ const blogs = [
     content: 'Urban living offers a range of challenges and opportunities, from access to amenities to the need for sustainable development...',
     authorId: 1,
     categoryId: 1,
+    featuredImg: 'UBC-MEL-URSY-Martino-Industry-Challenges-Banner.webp',
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -20,6 +22,7 @@ const blogs = [
     content: 'Technology is rapidly changing the way we approach education, from online learning to interactive classrooms...',
     authorId: 2,
     categoryId: 2,
+    featuredImg: 'education.webp',
     createdAt: new Date(),
     updatedAt: new Date()
   },
