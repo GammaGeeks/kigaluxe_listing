@@ -170,7 +170,7 @@ class blogController {
       });
     }
 
-    const key = (!blog.featuredImg) ? `${randomImageName()}` : blog.featuredImg
+    const key = (!blog.featuredImg) ? `blog/${randomImageName()}` : blog.featuredImg
     console.log(key)
 
     try {
