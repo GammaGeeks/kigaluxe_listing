@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: circleci/node:16 # Updated to use Node.js version 16
+      - image: circleci/node:16 # Use Node.js version 16
 
 jobs:
   # 1. Install Packages
@@ -14,12 +14,18 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - node_modules
+            - .
 
   # 2. Run Tests
   test:
     executor: node-executor
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/project
       - run:
           name: Run Tests
           command: npm run test
@@ -29,8 +35,7 @@ jobs:
     docker:
       - image: circleci/python:3.8  # Add python for docker-compose
     steps:
-      - setup_remote_docker  # No docker layer caching specified
-
+      - setup_remote_docker
       - checkout
 
       # Build the Docker image
