@@ -41,7 +41,8 @@ jobs:
       # Build the Docker image
       - run:
           name: Build Docker Image
-          command: docker build -t your-dockerhub-username/your-app-name .
+          command: |
+            docker build -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
 
       # Log in to Docker Hub
       - run:
@@ -52,7 +53,7 @@ jobs:
       # Push the Docker image to Docker Hub
       - run:
           name: Push Docker Image
-          command: docker push your-dockerhub-username/your-app-name
+          command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
 
 workflows:
   version: 2
