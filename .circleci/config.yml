@@ -39,21 +39,21 @@ jobs:
       - checkout
 
       # Build the Docker image
-      - run:
-          name: Build Docker Image
-          command: |
-            docker build -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
+      # - run:
+      #     name: Build Docker Image
+      #     command: |
+      #       docker build -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
 
-      # Log in to Docker Hub
-      - run:
-          name: Docker Hub Login
-          command: |
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+      # # Log in to Docker Hub
+      # - run:
+      #     name: Docker Hub Login
+      #     command: |
+      #       echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
-      # Push the Docker image to Docker Hub
-      - run:
-          name: Push Docker Image
-          command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
+      # # Push the Docker image to Docker Hub
+      # - run:
+      #     name: Push Docker Image
+      #     command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
 
 workflows:
   version: 2
