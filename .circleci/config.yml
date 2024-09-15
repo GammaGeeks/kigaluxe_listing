@@ -63,6 +63,6 @@ workflows:
       - test:
           requires:
             - install
-      - deploy:
-          requires:
-            - test
+      # - deploy:
+      #     requires:
+      #       - test
