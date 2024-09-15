@@ -31,12 +31,12 @@ jobs:
           command: npm run test
 
   # 3. Build and Deploy to Docker Hub
-  deploy:
-    docker:
-      - image: circleci/python:3.8  # Add python for docker-compose
-    steps:
-      - setup_remote_docker
-      - checkout
+  # deploy:
+  #   docker:
+  #     - image: circleci/python:3.8  # Add python for docker-compose
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
 
       # Build the Docker image
       # - run:
