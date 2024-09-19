@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "nyc --reporter=text --reporter=lcov jest",
 		"build": "rimraf dist && babel src --out-dir dist  --copy-files",
-		"start": "npm run drop_migrate_seed && npm run build && node dist/",
+		"start": "npm run  && npm run build && node dist/",
 		"dev": "nodemon --exec babel-node src/index.js",
 		"lint": "eslint ./src",
 		"coverage": "nyc npm run test",
