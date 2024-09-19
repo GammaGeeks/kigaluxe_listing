@@ -37,23 +37,20 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      - run:
-          name: Create Dockerfile
-          command: |
-            echo 'FROM node:16' > Dockerfile
-            echo 'WORKDIR /app' >> Dockerfile
-            echo 'COPY . /app' >> Dockerfile
-            echo 'RUN npm install' >> Dockerfile
-            echo 'EXPOSE 3000' >> Dockerfile
-            echo 'CMD ["npm", "start"]' >> Dockerfile
+
+      # Build the Docker image with port 3000 exposed as specified in Dockerfile
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
+            docker build --build-arg NODE_VERSION=20.15.0 -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
+    
+      # Log in to Docker Hub
       - run:
           name: Docker Hub Login
           command: |
             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+    
+      # Push the Docker image to Docker Hub
       - run:
           name: Push Docker Image
           command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
