@@ -38,3 +38,5 @@ node_modules
 coverage
 package-lock.json
 test.rest
+**/yarn.lock
+.circleci
