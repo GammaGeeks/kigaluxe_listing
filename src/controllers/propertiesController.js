@@ -217,8 +217,8 @@ class propertiesController {
 
     for (let i = 0; i < req.files.length; i += 1) {
       const file = req.files[i];
-      const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
-      const key = `${randomImageName()}`;
+      const randomImageName = (bytes = 12) => crypto.randomBytes(bytes).toString('hex');
+      const key = `property/${randomImageName()}`;
       const uploadPromise = s3_helper.s3_objPut(key, file.buffer, file.mimetype);
       imageIds.push(key);
       s3Promises.push(uploadPromise);
