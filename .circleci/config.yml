@@ -1,35 +1,4 @@
-version: 2.1
-
-executors:
-  node-executor:
-    docker:
-      - image: circleci/node:16 # Use Node.js version 16
-
 jobs:
-  # 1. Install Packages
-  install:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - node_modules
-            - .
-
-  # 2. Run Tests
-  test:
-    executor: node-executor
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Run Tests
-          command: npm run test
-
   # 3. Build and Deploy to Docker Hub
   deploy:
     docker:
@@ -37,6 +6,15 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
+      - run:
+          name: Create Dockerfile
+          command: |
+            echo 'FROM node:16' > Dockerfile
+            echo 'WORKDIR /app' >> Dockerfile
+            echo 'COPY . /app' >> Dockerfile
+            echo 'RUN npm install' >> Dockerfile
+            echo 'EXPOSE 3000' >> Dockerfile
+            echo 'CMD ["npm", "start"]' >> Dockerfile
       - run:
           name: Build Docker Image
           command: |
@@ -48,15 +26,3 @@ jobs:
       - run:
           name: Push Docker Image
           command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
-
-workflows:
-  version: 2
-  build_and_test_and_deploy:
-    jobs:
-      - install
-      - test:
-          requires:
-            - install
-      - deploy:
-          requires:
-            - test
