@@ -142,9 +142,9 @@ class placeController {
         error: "No files were uploaded"
       });
     }
-    const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+    const randomImageName = (bytes = 12) => crypto.randomBytes(bytes).toString('hex');
     const place = await placeDB.findPlaceById(id)
-    const key = (!place.img) ? `${randomImageName()}` : place.img
+    const key = (!place.img) ? `place/${randomImageName()}` : place.img
     try {
       await s3_helper.s3_objPut(key, files.buffer, files.mimetype)
       await placeDB.updatePlace(id, 'img', key)

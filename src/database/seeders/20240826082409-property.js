@@ -2,7 +2,7 @@ const properties = [
   {
     title: 'Spacious Family House',
     userId: 1,
-    imageIds: ['img1.jpg', 'img2.jpg'],
+    imageIds: ['property/img1.jpg', 'property/img2.jpg'],
     details: 'A spacious family house with modern amenities and a large backyard.',
     price: 350000,
     property_type: 1,
@@ -26,7 +26,7 @@ const properties = [
   {
     title: 'Modern Apartment',
     userId: 2,
-    imageIds: ['img3.jpg', 'img4.jpg'],
+    imageIds: ['property/img3.jpg', 'property/img4.jpg'],
     details: 'A modern apartment with a city view and close to public transport.',
     price: 200000,
     property_type: 2,
@@ -50,7 +50,7 @@ const properties = [
   {
     title: 'Luxurious Villa',
     userId: 3,
-    imageIds: ['img5.jpg', 'img6.jpg'],
+    imageIds: ['property/img5.jpg', 'property/img6.jpg'],
     details: 'A luxurious villa with a private pool and garden.',
     price: 750000,
     property_type: 3,
@@ -74,7 +74,7 @@ const properties = [
   {
     title: 'Cozy Cottage',
     userId: 4,
-    imageIds: ['img7.jpg', 'img8.jpg'],
+    imageIds: ['property/img7.jpg', 'property/img8.jpg'],
     details: 'A cozy cottage perfect for a quiet retreat.',
     price: 150000,
     property_type: 4,
@@ -98,7 +98,7 @@ const properties = [
   {
     title: 'Office Space Downtown',
     userId: 5,
-    imageIds: ['img9.jpg', 'img10.jpg'],
+    imageIds: ['property/img9.jpg', 'property/img10.jpg'],
     details: 'A prime office space located in the heart of the city.',
     price: 500000,
     property_type: 5,
@@ -122,7 +122,7 @@ const properties = [
   {
     title: 'Secluded Cabin',
     userId: 1,
-    imageIds: ['img11.jpg', 'img12.jpg'],
+    imageIds: ['property/img11.jpg', 'property/img12.jpg'],
     details: 'A secluded cabin in the mountains, perfect for a getaway.',
     price: 180000,
     property_type: 6,
@@ -146,7 +146,7 @@ const properties = [
   {
     title: 'Urban Loft',
     userId: 2,
-    imageIds: ['img13.jpg', 'img14.jpg'],
+    imageIds: ['property/img13.jpg', 'property/img14.jpg'],
     details: 'A trendy urban loft in the city center.',
     price: 300000,
     property_type: 2,
@@ -170,7 +170,7 @@ const properties = [
   {
     title: 'Beachfront Condo',
     userId: 3,
-    imageIds: ['img15.jpg', 'img16.jpg'],
+    imageIds: ['property/img15.jpg', 'property/img16.jpg'],
     details: 'A beautiful condo with a view of the ocean.',
     price: 600000,
     property_type: 2,
@@ -194,7 +194,7 @@ const properties = [
   {
     title: 'Suburban Home',
     userId: 4,
-    imageIds: ['img17.jpg', 'img18.jpg'],
+    imageIds: ['property/img17.jpg', 'property/img18.jpg'],
     details: 'A charming home in a quiet suburban neighborhood.',
     price: 250000,
     property_type: 1,
@@ -218,7 +218,7 @@ const properties = [
   {
     title: 'Country Estate',
     userId: 5,
-    imageIds: ['img19.jpg', 'img20.jpg'],
+    imageIds: ['property/img19.jpg', 'property/img20.jpg'],
     details: 'A large estate in the countryside with vast lands.',
     price: 900000,
     property_type: 7,
@@ -242,7 +242,7 @@ const properties = [
   {
     title: 'Modern Duplex',
     userId: 1,
-    imageIds: ['img21.jpg', 'img22.jpg'],
+    imageIds: ['property/img21.jpg', 'property/img22.jpg'],
     details: 'A modern duplex with high-end finishes.',
     price: 320000,
     property_type: 3,
@@ -266,7 +266,7 @@ const properties = [
   {
     title: 'Penthouse Suite',
     userId: 2,
-    imageIds: ['img23.jpg', 'img24.jpg'],
+    imageIds: ['property/img23.jpg', 'property/img24.jpg'],
     details: 'A luxurious penthouse suite with a panoramic city view.',
     price: 800000,
     property_type: 3,
@@ -290,7 +290,7 @@ const properties = [
   {
     title: 'Townhouse',
     userId: 3,
-    imageIds: ['img25.jpg', 'img26.jpg'],
+    imageIds: ['property/img25.jpg', 'property/img26.jpg'],
     details: 'A three-story townhouse with modern amenities.',
     price: 280000,
     property_type: 2,
@@ -314,7 +314,7 @@ const properties = [
   {
     title: 'Luxury Condo',
     userId: 4,
-    imageIds: ['img27.jpg', 'img28.jpg'],
+    imageIds: ['property/img27.jpg', 'property/img28.jpg'],
     details: 'A luxury condo with modern interiors.',
     price: 450000,
     property_type: 2,
@@ -338,7 +338,7 @@ const properties = [
   {
     title: 'Warehouse',
     userId: 5,
-    imageIds: ['img29.jpg', 'img30.jpg'],
+    imageIds: ['property/img29.jpg', 'property/img30.jpg'],
     details: 'A large warehouse suitable for storage or industrial use.',
     price: 550000,
     property_type: 7,
@@ -362,7 +362,7 @@ const properties = [
   {
     title: 'Retail Space',
     userId: 1,
-    imageIds: ['img31.jpg', 'img32.jpg'],
+    imageIds: ['property/img31.jpg', 'property/img32.jpg'],
     details: 'A prime retail space located in a busy commercial area.',
     price: 700000,
     property_type: 5,
@@ -386,7 +386,7 @@ const properties = [
   {
     title: 'Studio Apartment',
     userId: 2,
-    imageIds: ['img33.jpg', 'img34.jpg'],
+    imageIds: ['property/img33.jpg', 'property/img34.jpg'],
     details: 'A compact studio apartment perfect for singles or young couples.',
     price: 120000,
     property_type: 2,
@@ -410,7 +410,7 @@ const properties = [
   {
     title: 'Farmhouse',
     userId: 3,
-    imageIds: ['img35.jpg', 'img36.jpg'],
+    imageIds: ['property/img35.jpg', 'property/img36.jpg'],
     details: 'A rustic farmhouse with ample land for farming.',
     price: 500000,
     property_type: 6,
@@ -434,7 +434,7 @@ const properties = [
   {
     title: 'City Office Building',
     userId: 4,
-    imageIds: ['img37.jpg', 'img38.jpg'],
+    imageIds: ['property/img37.jpg', 'property/img38.jpg'],
     details: 'A multi-story office building in the city center.',
     price: 1000000,
     property_type: 5,
@@ -458,7 +458,7 @@ const properties = [
   {
     title: 'Vacant Land Plot',
     userId: 5,
-    imageIds: ['img39.jpg', 'img40.jpg'],
+    imageIds: ['property/img39.jpg', 'property/img40.jpg'],
     details: 'A vacant land plot ideal for development.',
     price: 300000,
     property_type: 7,
