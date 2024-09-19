@@ -14,9 +14,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
-        run:
-          name: Exposing port 3000
-          command: expose 3000  
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -34,29 +31,29 @@ jobs:
           command: npm run test
 
   # 3. Build and Deploy to Docker Hub
-  deploy:
-    docker:
-      - image: circleci/python:3.8  # Add python for docker-compose
-    steps:
-      - setup_remote_docker
-      - checkout
+  # deploy:
+  #   docker:
+  #     - image: circleci/python:3.8  # Add python for docker-compose
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
 
-      # Build the Docker image with port 3000 exposed as specified in Dockerfile
-      - run:
-          name: Build Docker Image
-          command: |
-            docker build --build-arg NODE_VERSION=20.15.0 -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
+  #     # Build the Docker image with port 3000 exposed as specified in Dockerfile
+  #     - run:
+  #         name: Build Docker Image
+  #         command: |
+  #           docker build --build-arg NODE_VERSION=20.15.0 -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
     
-      # Log in to Docker Hub
-      - run:
-          name: Docker Hub Login
-          command: |
-            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+  #     # Log in to Docker Hub
+  #     - run:
+  #         name: Docker Hub Login
+  #         command: |
+  #           echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
     
-      # Push the Docker image to Docker Hub
-      - run:
-          name: Push Docker Image
-          command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
+  #     # Push the Docker image to Docker Hub
+  #     - run:
+  #         name: Push Docker Image
+  #         command: docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME
 
 workflows:
   version: 2
@@ -66,6 +63,6 @@ workflows:
       - test:
           requires:
             - install
-      - deploy:
-          requires:
-            - test
+      # - deploy:
+      #     requires:
+      #       - test
