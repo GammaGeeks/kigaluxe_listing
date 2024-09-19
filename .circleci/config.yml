@@ -14,11 +14,14 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
+        run:
+          name: Exposing port 3000
+          command: expose 3000  
       - persist_to_workspace:
           root: ~/project
           paths:
             - node_modules
-            - .
+            - .    
 
   # 2. Run Tests
   test:
