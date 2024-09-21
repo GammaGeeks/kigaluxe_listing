@@ -4,6 +4,6 @@ import searchController from '../controllers/searchController';
 
 const router = Router();
 
-router.post('/search', asyncErrorHandler(searchController))
+router.get('/search', asyncErrorHandler(searchController))
 
 export default router
