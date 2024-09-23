@@ -30,7 +30,7 @@ jobs:
           name: Run Tests
           command: npm run test
 
-  3. Build and Deploy to Docker Hub
+  # 3. Build and Deploy to Docker Hub
   deploy:
     docker:
       - image: circleci/python:3.8  # Add python for docker-compose
@@ -43,13 +43,13 @@ jobs:
           name: Build Docker Image
           command: |
             docker build --build-arg NODE_VERSION=20.15.0 -t $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME .
-    
+
       # Log in to Docker Hub
       - run:
           name: Docker Hub Login
           command: |
             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-    
+
       # Push the Docker image to Docker Hub
       - run:
           name: Push Docker Image
