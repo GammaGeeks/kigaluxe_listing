@@ -4,12 +4,16 @@
       "title": "kigaluxe",
       "description": "This is a simple API documentation for kigaluxe real estate co.",
       "contact": {
-        "email": "nigorjeanluc@gmail.com"
+        "email": "ngogaadolphe@gmail.com"
       }
     },
     "servers": [
     {
-      "url": "https://kigaluxe-backend.onrender.com/",
+      "url": "https://backend.kigaluxe.estate",
+      "description": "production server"
+    },
+    {
+      "url": "https://kigaluxe-listing-jow3.onrender.com",
       "description": "Staging server"
     },
     {
