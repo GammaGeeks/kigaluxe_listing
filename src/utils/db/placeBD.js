@@ -45,6 +45,13 @@ class placeDB {
     }
   }
 
+  static async similarSearch(province) {
+    const places = await place.findAll(
+      { where: { province } }
+    )
+    return places
+  }
+
   static async updatePlace(id, column, value) {
     const updated = await place.update(
       { [column]: value, updatedAt: new Date() },

@@ -177,6 +177,33 @@ class placeController {
       place
     })
   }
+
+  static async similar(req, res) {
+    const { location } = req.query
+    const page = req.query.page || 1
+    const limit = req.query.limit || 5
+    if (!location) {
+      return res.status(400).json({
+        status: 400,
+        error: 'location can\'t be empty'
+      })
+    }
+    const place = await placeDB.searchThrough(location)
+    if (place.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        message: 'no similar place found'
+      })
+    }
+
+    const similar = await placeDB.similarSearch(place[0].province)
+
+    res.status(200).json({
+      status: 200,
+      message: "similar places found",
+      data: paginator(similar, page, limit)
+    })
+  }
 }
 
 export default placeController
