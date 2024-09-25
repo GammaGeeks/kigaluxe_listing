@@ -14,5 +14,6 @@ router.post('/place', verifyToken, asyncErrorHandler(placeController.createPlace
 router.post('/place/img/:id', verifyToken, upload.array('avatar'), asyncErrorHandler(placeController.addPlaceImg))
 router.patch('/place/:id', verifyToken, asyncErrorHandler(placeController.updatePlace))
 router.delete('/place/:id', verifyToken, asyncErrorHandler(placeController.deleteAPlace))
+router.get('/places/similar', asyncErrorHandler(placeController.similar))
 
 export default router
