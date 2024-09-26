@@ -7,8 +7,6 @@ import placeDB from "../utils/db/placeBD"
 async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
   const catHolder = array.map((element, index) => index)
-  console.log('##################################################################')
-  console.log(catHolder)
   let { location, property_type, price, property_size, isForSale, isForRent } = req.query
   if (!location) {
     location = ['a', 'i', 'u', 'e', 'o']
