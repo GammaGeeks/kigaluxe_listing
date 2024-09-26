@@ -8,6 +8,7 @@ import commentRoutes from './commentRoutes'
 import appointmentRoutes from './appoiontmentRoutes'
 import placeRoutes from './placeRoutes'
 import rateRoutes from './rateRoutes'
+import categoriesRoutes from './categoriesRoutes'
 
 const router = Router()
 
@@ -20,5 +21,6 @@ router.use(blogRoutes)
 router.use(appointmentRoutes)
 router.use(placeRoutes)
 router.use(rateRoutes)
+router.use(categoriesRoutes)
 
 export default router
