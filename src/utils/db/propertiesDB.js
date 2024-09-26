@@ -116,14 +116,16 @@ class propertiesDB {
     return holder
   }
 
-  static async searchProperty(location, property_type, price, property_size) {
+  static async searchProperty(location, property_type, price, property_size, isForSale, isForRent) {
     const holder = await property.findAll({
       where: {
         [Sequelize.Op.and]: [
           { location: { [Sequelize.Op.or]: location } },
           { property_type: { [Sequelize.Op.or]: property_type } },
           { price: { [Sequelize.Op.between]: price } },
-          { property_size: { [Sequelize.Op.between]: property_size } }
+          { property_size: { [Sequelize.Op.between]: property_size } },
+          { isForSale },
+          { isForRent }
         ]
       },
       include: [

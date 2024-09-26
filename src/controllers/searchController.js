@@ -7,7 +7,7 @@ import placeDB from "../utils/db/placeBD"
 async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
   const catHolder = array.map((element, index) => index)
-  let { location, property_type, price, property_size } = req.query
+  let { location, property_type, price, property_size, isForSale, isForRent } = req.query
   if (!location) {
     location = ['a', 'i', 'u', 'e', 'o']
     location = await placeDB.searchThrough(location)
@@ -39,7 +39,9 @@ async function searchController(req, res) {
   } else {
     property_size = property_size.slice(1, -1).split(',').map(Number)
   }
-  const results = await propertiesDB.searchProperty(location, property_type, price, property_size)
+  if (!isForSale) isForSale = true
+  if (!isForRent) isForRent = true
+  const results = await propertiesDB.searchProperty(location, property_type, price, property_size, isForSale, isForRent)
   const page = req.query.page || 1
   const limit = req.query.limit || 5
   res.status(200).json({
