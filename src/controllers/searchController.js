@@ -7,9 +7,16 @@ import s3_helper from "../utils/s3_helper"
 import categoryDB from "../utils/db/categoryDB"
 
 async function searchController(req, res) {
-  const array = await categoryDB.getAllCategories()
-  const catHolder = array.map((element, index) => index)
+  /*
+      initializing variables from the user or queries
+  */
   let { location, property_type, price, property_size, isForSale, isForRent } = req.query
+
+  /*
+      handling the cases when use didn't pass anything aka default values
+  */
+
+  // setting default location value
   if (!location) {
     location = ['a', 'i', 'u', 'e', 'o']
     location = await placeDB.searchThrough(location)
@@ -26,12 +33,30 @@ async function searchController(req, res) {
       })
     }
   }
+
+  /*
+      setting default values for property_type
+      by default we have to pass all categories
+  */
+  const array = await categoryDB.getAllCategories()
+  const catHolder = array.map((element) => element.id)
   if (!property_type) {
     property_type = catHolder
   } else {
+    /*
+     since we pass as an array like [2,7,9]
+     and it reaches to the server looking like "[2,7,9]"
+     we have to slice those "" so that we remain with an the actual array
+     instead of an array inside a string
+    */
     property_type = property_type.slice(1, -1).split(',').map(Number)
   }
+
+  // setting default price value
   if (!price) {
+    /*
+      by default we have to set a bigger number as possible
+    */
     price = [1, 1000000000]
   } else {
     price = price.slice(1, -1).split(',').map(Number)
