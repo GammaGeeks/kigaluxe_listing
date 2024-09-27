@@ -4,9 +4,10 @@ import propertiesDB from "../utils/db/propertiesDB"
 import paginator from "../utils/paginator"
 import placeDB from "../utils/db/placeBD"
 import s3_helper from "../utils/s3_helper"
+import categoryDB from "../utils/db/categoryDB"
 
 async function searchController(req, res) {
-  const array = await propertiesDB.getAllProperties()
+  const array = await categoryDB.getAllCategories()
   const catHolder = array.map((element, index) => index)
   let { location, property_type, price, property_size, isForSale, isForRent } = req.query
   if (!location) {
