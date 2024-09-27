@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize"
 import propertiesDB from "../utils/db/propertiesDB"
 import paginator from "../utils/paginator"
 import placeDB from "../utils/db/placeBD"
+import s3_helper from "../utils/s3_helper"
 
 async function searchController(req, res) {
   const array = await propertiesDB.getAllProperties()
@@ -41,7 +42,47 @@ async function searchController(req, res) {
   }
   if (!isForSale) isForSale = true
   if (!isForRent) isForRent = true
-  const results = await propertiesDB.searchProperty(location, property_type, price, property_size, isForSale, isForRent)
+  let results = await propertiesDB.searchProperty(location, property_type, price, property_size, isForSale, isForRent)
+  const urls = await Promise.all(
+    results.map(async (prop) => {
+      const shortUrls = await Promise.all(
+        prop.imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
+      );
+      return shortUrls;
+    })
+  );
+  results = results.map((prop, index) => {
+    const { id, title, userId, imageIds, details, price, property_type,
+          property_size, hasParking, isForSale, isForRent, isLand, location,
+          shareIds, bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+    return {
+      id,
+      title,
+      userId,
+      imageIds,
+      imageUrl: urls[index],
+      details,
+      price,
+      property_type,
+      property_size,
+      hasParking,
+      isForSale,
+      isForRent,
+      isLand,
+      location,
+      shareIds,
+      bedrooms,
+      bathrooms,
+      isSold,
+      hasPool,
+      appliances,
+      yearBuilt,
+      AC,
+      // rates: rates[index],
+      createdAt,
+      updatedAt
+    };
+  })
   const page = req.query.page || 1
   const limit = req.query.limit || 5
   res.status(200).json({
