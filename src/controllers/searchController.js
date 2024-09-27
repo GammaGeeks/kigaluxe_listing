@@ -52,9 +52,14 @@ async function searchController(req, res) {
     })
   );
   results = results.map((prop, index) => {
-    const { id, title, userId, imageIds, details, price, property_type,
-          property_size, hasParking, isForSale, isForRent, isLand, location,
-          shareIds, bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+    const { id, title, userId, imageIds, details, hasParking, isLand, shareIds, bedrooms,
+      bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+    const price1 = prop.price
+    const property_size1 = prop.property_size
+    const property_type1 = prop.property_type
+    const isForSale1 = prop.isForSale
+    const isForRent1 = prop.isForRent
+    const location1 = prop.location
     return {
       id,
       title,
@@ -62,14 +67,14 @@ async function searchController(req, res) {
       imageIds,
       imageUrl: urls[index],
       details,
-      price,
-      property_type,
-      property_size,
+      price: price1,
+      property_type: property_type1,
+      property_size: property_size1,
       hasParking,
-      isForSale,
-      isForRent,
+      isForSale: isForSale1,
+      isForRent: isForRent1,
       isLand,
-      location,
+      location: location1,
       shareIds,
       bedrooms,
       bathrooms,
