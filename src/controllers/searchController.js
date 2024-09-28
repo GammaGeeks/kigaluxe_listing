@@ -89,6 +89,14 @@ async function searchController(req, res) {
   // results var holds the searched data
   let results = await propertiesDB.searchProperty(location, property_type, price, property_size, isForSale, isForRent)
 
+  // we have to exit the function if no search found
+  if (results.length === 0) {
+    return res.status(404).json({
+      status: 404,
+      message: "no property found"
+    })
+  }
+
   /*
   - we have to generate an array of urls then append it to results later
   - we use to maps because imageIds in an array which is inside another array
