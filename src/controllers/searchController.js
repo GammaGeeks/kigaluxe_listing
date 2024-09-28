@@ -55,28 +55,66 @@ async function searchController(req, res) {
   // setting default price value
   if (!price) {
     /*
-      by default we have to set a bigger number as possible
+      by default we have to set as bigger number as possible to
+      ensure that all properties will be included
     */
     price = [1, 1000000000]
   } else {
+    /*
+    we have to slice a received to get the actual array to pass in filter
+    then convert it to numbers instead of using strings
+    */
     price = price.slice(1, -1).split(',').map(Number)
   }
+
+  // setting default values for property_size
   if (!property_size) {
+    /*
+      by default we have to set as bigger number as possible to
+      ensure that all properties will be included
+    */
     property_size = [1, 1000000000]
   } else {
+    /*
+    we have to slice a received to get the actual array to pass in filter
+    then convert it to numbers instead of using strings
+    */
     property_size = property_size.slice(1, -1).split(',').map(Number)
   }
-  if (!isForSale) isForSale = true
-  if (!isForRent) isForRent = true
+
+  if (!isForSale) isForSale = true // setting isForSale to be true by default
+
+  if (!isForRent) isForRent = true // setting isForRent to be true by default
+
+  // results var holds the searched data
   let results = await propertiesDB.searchProperty(location, property_type, price, property_size, isForSale, isForRent)
+
+  // we have to exit the function if no search found
+  if (results.length === 0) {
+    return res.status(404).json({
+      status: 404,
+      message: "no property found"
+    })
+  }
+
+  /*
+  - we have to generate an array of urls then append it to results later
+  - we use to maps because imageIds in an array which is inside another array
+  so first map access the parent array as results is an array then the second one
+  is to access the imageIds array
+  */
   const urls = await Promise.all(
-    results.map(async (prop) => {
+    results.map(async (prop) => { // accessing parent array "results"
       const shortUrls = await Promise.all(
+
+        // accessing the imageIds array
         prop.imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
       );
       return shortUrls;
     })
   );
+
+  // now we are going to add urls to the searched data
   results = results.map((prop, index) => {
     const { id, title, userId, imageIds, details, hasParking, isLand, shareIds, bedrooms,
       bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
@@ -114,8 +152,9 @@ async function searchController(req, res) {
       updatedAt
     };
   })
-  const page = req.query.page || 1
-  const limit = req.query.limit || 5
+
+  const page = req.query.page || 1 // setting page to be one by default
+  const limit = req.query.limit || 5 // setting limit to be 5 by default
   res.status(200).json({
     status: 200,
     message: "search completed successfully",
