@@ -9,5 +9,6 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
 router.get('/categories', asyncErrorHandler(categoriesController.getAllCategories))
+router.post('/categories', asyncErrorHandler(categoriesController.postCategory))
 
 export default router
