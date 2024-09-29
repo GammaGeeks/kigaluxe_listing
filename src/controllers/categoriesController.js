@@ -21,6 +21,24 @@ class CategoriesController {
       data: paginator(allCategories, page, limit)
     })
   }
+
+  static async postCategory(req, res) {
+    const { name, details } = req.body
+
+    if (!name) {
+      return res.status(403).json({
+        status: 403,
+        error: 'name can\'t be empty'
+      })
+    }
+    const entry = { name, details }
+    const category = await categoryDB.addCategory(entry)
+
+    return res.status(201).json({
+      status: 201,
+      message: 'category created successfully'
+    })
+  }
 }
 
 export default CategoriesController
