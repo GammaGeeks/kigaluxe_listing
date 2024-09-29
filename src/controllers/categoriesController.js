@@ -1,4 +1,5 @@
 /* eslint-disable require-jsdoc */
+import { string } from 'joi'
 import categoryDB from '../utils/db/categoryDB'
 import paginator from '../utils/paginator'
 
@@ -22,22 +23,32 @@ class CategoriesController {
     })
   }
 
+  /*
+***********************************************************************************************************
+------------------------------- getAllCategories controller ---------------------------------------------------
+***********************************************************************************************************
+*/
   static async postCategory(req, res) {
+    // getting input from user
     const { name, details } = req.body
 
+    // exiting function if name is empty to avoid nulls
     if (!name) {
       return res.status(403).json({
         status: 403,
         error: 'name can\'t be empty'
       })
     }
+
     const entry = { name, details }
     const category = await categoryDB.addCategory(entry)
 
-    return res.status(201).json({
-      status: 201,
-      message: 'category created successfully'
-    })
+    if (category) {
+      return res.status(201).json({
+        status: 201,
+        message: 'category created successfully'
+      })
+    }
   }
 }
 
