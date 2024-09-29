@@ -12,6 +12,16 @@ class categoryDB {
     })
     return newCategories
   }
+
+  static async addCategory(entry) {
+    const newCategory = await category.create({
+      ...entry,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    })
+
+    return newCategory
+  }
 }
 
 export default categoryDB
