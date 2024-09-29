@@ -17,6 +17,7 @@ class CategoriesController {
 
     res.json({
       status: 200,
+      message: 'categories found',
       data: paginator(allCategories, page, limit)
     })
   }
