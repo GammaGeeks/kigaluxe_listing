@@ -25,7 +25,7 @@ class CategoriesController {
 
   /*
 ***********************************************************************************************************
-------------------------------- getAllCategories controller ---------------------------------------------------
+------------------------------- postCategory controller ---------------------------------------------------
 ***********************************************************************************************************
 */
   static async postCategory(req, res) {
@@ -41,8 +41,9 @@ class CategoriesController {
     }
 
     const entry = { name, details }
-    const category = await categoryDB.addCategory(entry)
+    const category = await categoryDB.addCategory(entry) // saving a category
 
+    // making sure a category is saved
     if (category) {
       return res.status(201).json({
         status: 201,
