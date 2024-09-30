@@ -66,6 +66,12 @@ class CategoriesController {
         error: "id can/'t be empty"
       })
     }
+    if (!await categoryDB.findOneCategory(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: 'no category found with that id'
+      })
+    }
     const category = await categoryDB.deleteCategory(id)
     if (category) {
       return res.status(200).json({
