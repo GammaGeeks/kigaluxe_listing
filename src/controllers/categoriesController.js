@@ -51,6 +51,41 @@ class CategoriesController {
       })
     }
   }
+
+  /*
+***********************************************************************************************************
+------------------------------- deleteCategory controller ---------------------------------------------------
+***********************************************************************************************************
+*/
+
+  static async deleteCategory(req, res) {
+    const { id } = req.params
+
+    // checking if an id is not empty
+    if (!id) {
+      return res.status(403).json({
+        status: 403,
+        error: "id can/'t be empty"
+      })
+    }
+
+    // checking if that category exist
+    if (!await categoryDB.findOneCategory(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: 'no category found with that id'
+      })
+    }
+
+    // deleting a category
+    const category = await categoryDB.deleteCategory(id)
+    if (category) {
+      return res.status(200).json({
+        status: 200,
+        message: 'category deleted successfully'
+      })
+    }
+  }
 }
 
 export default CategoriesController
