@@ -27,6 +27,11 @@ class categoryDB {
     const newCategory = await category.destroy({ where: { id } })
     return newCategory
   }
+
+  static async findOneCategory(id) {
+    const newCategory = await category.findOne({ where: { id } })
+    return newCategory
+  }
 }
 
 export default categoryDB
