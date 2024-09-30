@@ -59,7 +59,7 @@ class CategoriesController {
 */
 
   static async deleteCategory(req, res) {
-    const { id } = res.query
+    const { id } = req.params
     if (!id) {
       return res.status(403).json({
         status: 403,
