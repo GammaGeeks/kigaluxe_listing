@@ -22,6 +22,11 @@ class categoryDB {
 
     return newCategory
   }
+
+  static async deleteCategory(id) {
+    const newCategory = await category.destroy({ where: { id } })
+    return newCategory
+  }
 }
 
 export default categoryDB
