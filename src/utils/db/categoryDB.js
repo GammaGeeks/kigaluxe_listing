@@ -32,6 +32,18 @@ class categoryDB {
     const newCategory = await category.findOne({ where: { id } })
     return newCategory
   }
+
+  static async updateCategoryDb(id, entry) {
+    const newCategory = await category.update(
+      {
+        ...entry,
+        updatedAt: Date.now()
+      },
+      {
+        where: { id }
+      })
+    return newCategory
+  }
 }
 
 export default categoryDB

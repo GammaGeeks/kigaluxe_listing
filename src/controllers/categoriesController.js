@@ -86,6 +86,51 @@ class CategoriesController {
       })
     }
   }
+
+  /*
+***********************************************************************************************************
+------------------------------- updateCategory controller ---------------------------------------------------
+***********************************************************************************************************
+*/
+
+  static async updateCategory(req, res) {
+    // getting input from user
+    const { name, details } = req.body
+    const { id } = req.params
+
+    // checking if an id is not empty
+    if (!id) {
+      return res.status(403).json({
+        status: 403,
+        error: "id can/'t be empty"
+      })
+    }
+
+    // checking if that category exist
+    if (!await categoryDB.findOneCategory(id)) {
+      return res.status(404).json({
+        status: 404,
+        error: 'no category found with that id'
+      })
+    }
+
+    // exiting function if name is empty to avoid nulls
+    if (!name) {
+      return res.status(403).json({
+        status: 403,
+        error: 'name can\'t be empty'
+      })
+    }
+
+    const entry = { name, details }
+    const category = await categoryDB.updateCategoryDb(id, entry)
+    if (category) {
+      res.status(200).json({
+        status: 200,
+        message: `category with ${id} updated successfully`
+      })
+    }
+  }
 }
 
 export default CategoriesController
