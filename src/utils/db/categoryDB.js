@@ -33,7 +33,7 @@ class categoryDB {
     return newCategory
   }
 
-  static async updateCategory(id, entry) {
+  static async updateCategoryDb(id, entry) {
     const newCategory = await category.update(
       {
         ...entry,
