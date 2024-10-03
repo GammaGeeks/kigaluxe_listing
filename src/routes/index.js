@@ -9,6 +9,7 @@ import appointmentRoutes from './appoiontmentRoutes'
 import placeRoutes from './placeRoutes'
 import rateRoutes from './rateRoutes'
 import categoriesRoutes from './categoriesRoutes'
+import explore from './explore'
 
 const router = Router()
 
@@ -22,5 +23,6 @@ router.use(appointmentRoutes)
 router.use(placeRoutes)
 router.use(rateRoutes)
 router.use(categoriesRoutes)
+router.use(explore)
 
 export default router
