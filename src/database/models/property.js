@@ -20,6 +20,7 @@ const propertyDefinition = (sequelize, DataTypes) => {
     appliances: { type: DataTypes.ARRAY(DataTypes.STRING) },
     yearBuilt: { type: DataTypes.DATE },
     AC: { type: DataTypes.BOOLEAN },
+    YTUrl: { type: DataTypes.STRING },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
   }, {});
