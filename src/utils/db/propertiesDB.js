@@ -110,7 +110,7 @@ class propertiesDB {
             `CONCAT("place"."district", ' - ', "place"."sector", ' - ' ,"place"."knownName")`
           ),
           'location'
-        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds', 'hasPool', 'appliances', 'yearBuilt', 'AC'
+        ], 'price', 'hasParking', 'isForSale', 'isForRent', 'bedrooms', 'bathrooms', 'imageIds', 'hasPool', 'appliances', 'yearBuilt', 'AC', 'YTUrl'
       ]
     });
     return holder
