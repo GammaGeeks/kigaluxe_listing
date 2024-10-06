@@ -117,7 +117,7 @@ async function searchController(req, res) {
   // now we are going to add urls to the searched data
   results = results.map((prop, index) => {
     const { id, title, userId, imageIds, details, hasParking, isLand, shareIds, bedrooms,
-      bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+      bathrooms, hasPool, appliances, yearBuilt, AC, isSold, YTUrl, createdAt, updatedAt } = prop;
     const price1 = prop.price
     const property_size1 = prop.property_size
     const property_type1 = prop.property_type
@@ -148,6 +148,7 @@ async function searchController(req, res) {
       yearBuilt,
       AC,
       // rates: rates[index],
+      YTUrl,
       createdAt,
       updatedAt
     };
