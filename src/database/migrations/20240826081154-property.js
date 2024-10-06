@@ -81,6 +81,9 @@ const up = async (queryInterface, Sequelize) => {
     AC: {
       type: Sequelize.BOOLEAN
     },
+    YTUrl: {
+      type: Sequelize.STRING
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
