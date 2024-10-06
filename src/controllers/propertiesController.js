@@ -30,7 +30,7 @@ class propertiesController {
       // Construct property data with generated URLs
       const property_data = nproperty.map((prop, index) => {
         const { id, title, userId, imageIds, details, price, property_type,
-          property_size, hasParking, isForSale, isForRent, isLand, location,
+          property_size, hasParking, isForSale, isForRent, isLand, location, YTUrl,
           shareIds, bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
         return {
           id,
@@ -56,6 +56,7 @@ class propertiesController {
           yearBuilt,
           AC,
           rates: rates[index],
+          YTUrl,
           createdAt,
           updatedAt
         };
