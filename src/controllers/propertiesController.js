@@ -207,8 +207,8 @@ class propertiesController {
       })
     }
     await propertiesDB.deleteProperty(req.params.id)
-    res.status(201).json({
-      status: 201,
+    res.status(200).json({
+      status: 200,
       message: `property with id ${req.params.id} was deleted successfully`
     })
   }
