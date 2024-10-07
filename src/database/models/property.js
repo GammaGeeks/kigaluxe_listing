@@ -12,7 +12,6 @@ const propertyDefinition = (sequelize, DataTypes) => {
     isForRent: { type: DataTypes.BOOLEAN },
     isLand: { type: DataTypes.BOOLEAN },
     location: { type: DataTypes.INTEGER },
-    shareIds: { type: DataTypes.ARRAY(DataTypes.INTEGER) },
     bedrooms: { type: DataTypes.INTEGER },
     bathrooms: { type: DataTypes.INTEGER },
     isSold: { type: DataTypes.BOOLEAN },

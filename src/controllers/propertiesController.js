@@ -31,7 +31,7 @@ class propertiesController {
       const property_data = nproperty.map((prop, index) => {
         const { id, title, userId, imageIds, details, price, property_type,
           property_size, hasParking, isForSale, isForRent, isLand, location, YTUrl,
-          shareIds, bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+          bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
         return {
           id,
           title,
@@ -47,7 +47,6 @@ class propertiesController {
           isForRent,
           isLand,
           location,
-          shareIds,
           bedrooms,
           bathrooms,
           isSold,
