@@ -56,9 +56,6 @@ const up = async (queryInterface, Sequelize) => {
         key: 'id'
       }
     },
-    shareIds: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER)
-    },
     bedrooms: {
       type: Sequelize.INTEGER
     },

@@ -31,7 +31,7 @@ class propertiesController {
       const property_data = nproperty.map((prop, index) => {
         const { id, title, userId, imageIds, details, price, property_type,
           property_size, hasParking, isForSale, isForRent, isLand, location, YTUrl,
-          shareIds, bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+          bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
         return {
           id,
           title,
@@ -47,7 +47,6 @@ class propertiesController {
           isForRent,
           isLand,
           location,
-          shareIds,
           bedrooms,
           bathrooms,
           isSold,
@@ -118,8 +117,7 @@ class propertiesController {
 ***********************************************************************************************************
 */
   static async postProperties(req, res) {
-    const nproperty = {
-      title: req.body.title,
+    const nProperty = { title: req.body.title,
       imageIds: req.body.imageIds,
       details: req.body.details,
       price: req.body.price,
@@ -127,16 +125,19 @@ class propertiesController {
       property_size: req.body.property_size,
       hasParking: req.body.hasParking,
       isForSale: req.body.isForSale,
-      isForRent: req.body.isForSale,
+      isForRent: req.body.isForRent,
       isLand: req.body.isLand,
       location: req.body.location, // District, Sector
-      shareIds: req.body.shareIds,
       bedrooms: req.body.bedrooms,
       bathrooms: req.body.bathrooms,
-      ratings: req.body.ratings,
-      userId: req.user.id
-    }
-    const data = await propertiesDB.saveProperty(nproperty)
+      isSold: req.body.isSold,
+      hasPool: req.body.hasPool,
+      appliances: req.body.appliances,
+      yearBuilt: req.body.yearBuilt,
+      AC: req.body.AC,
+      YTUrl: req.body.YTUrl,
+      userId: req.user.id }
+    const data = await propertiesDB.saveProperty(nProperty)
     res.status(201).json({
       status: 201,
       message: 'property created successfully',
@@ -157,17 +158,38 @@ class propertiesController {
         error: "passed wrong id"
       })
     }
-    const { column, value } = req.body
-    const newprop = await propertiesDB.updateProperty(req.params.id, column, value)
-    if (!newprop[0]) {
+    const updatedAt = Date.now()
+    const entry = { title: req.body.title,
+      imageIds: req.body.imageIds,
+      details: req.body.details,
+      price: req.body.price,
+      property_type: req.body.property_type,
+      property_size: req.body.property_size,
+      hasParking: req.body.hasParking,
+      isForSale: req.body.isForSale,
+      isForRent: req.body.isForRent,
+      isLand: req.body.isLand,
+      location: req.body.location, // District, Sector
+      bedrooms: req.body.bedrooms,
+      bathrooms: req.body.bathrooms,
+      isSold: req.body.isSold,
+      hasPool: req.body.hasPool,
+      appliances: req.body.appliances,
+      yearBuilt: req.body.yearBuilt,
+      AC: req.body.AC,
+      YTUrl: req.body.YTUrl,
+      userId: req.user.id,
+      updatedAt }
+    const newProp = await propertiesDB.updateProperty(req.params.id, entry)
+    if (!newProp[0]) {
       res.status(400).json({
         status: 400,
         error: "invalid column"
       })
     } else {
-      res.status(201).json({
-        status: 201,
-        message: `${column} updated successfully`
+      res.status(200).json({
+        status: 200,
+        message: `property with ${req.user.id} updated successfully`
       })
     }
   }
@@ -186,8 +208,8 @@ class propertiesController {
       })
     }
     await propertiesDB.deleteProperty(req.params.id)
-    res.status(201).json({
-      status: 201,
+    res.status(200).json({
+      status: 200,
       message: `property with id ${req.params.id} was deleted successfully`
     })
   }

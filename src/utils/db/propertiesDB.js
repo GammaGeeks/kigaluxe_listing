@@ -78,9 +78,9 @@ class propertiesDB {
     }
   }
 
-  static async updateProperty(id, column, value) {
+  static async updateProperty(id, entry) {
     const updatedProperty = await property.update(
-      { [column]: value },
+      entry,
       { where: { id } }
     );
     return updatedProperty;
