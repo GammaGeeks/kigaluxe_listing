@@ -157,17 +157,36 @@ class propertiesController {
         error: "passed wrong id"
       })
     }
-    const { column, value } = req.body
-    const newprop = await propertiesDB.updateProperty(req.params.id, column, value)
-    if (!newprop[0]) {
+    const entry = { title: req.body.title,
+      imageIds: req.body.imageIds,
+      details: req.body.details,
+      price: req.body.price,
+      property_type: req.body.property_type,
+      property_size: req.body.property_size,
+      hasParking: req.body.hasParking,
+      isForSale: req.body.isForSale,
+      isForRent: req.body.isForRent,
+      isLand: req.body.isLand,
+      location: req.body.location, // District, Sector
+      bedrooms: req.body.bedrooms,
+      bathrooms: req.body.bathrooms,
+      isSold: req.body.isSold,
+      hasPool: req.body.hasPool,
+      appliances: req.body.appliances,
+      yearBuilt: req.body.yearBuilt,
+      AC: req.body.AC,
+      YTUrl: req.body.YTUrl,
+      userId: req.user.id }
+    const newProp = await propertiesDB.updateProperty(req.params.id, entry)
+    if (!newProp[0]) {
       res.status(400).json({
         status: 400,
         error: "invalid column"
       })
     } else {
-      res.status(201).json({
-        status: 201,
-        message: `${column} updated successfully`
+      res.status(200).json({
+        status: 200,
+        message: `property with ${req.user.id} updated successfully`
       })
     }
   }
