@@ -118,8 +118,7 @@ class propertiesController {
 ***********************************************************************************************************
 */
   static async postProperties(req, res) {
-    const nproperty = {
-      title: req.body.title,
+    const nProperty = { title: req.body.title,
       imageIds: req.body.imageIds,
       details: req.body.details,
       price: req.body.price,
@@ -127,16 +126,19 @@ class propertiesController {
       property_size: req.body.property_size,
       hasParking: req.body.hasParking,
       isForSale: req.body.isForSale,
-      isForRent: req.body.isForSale,
+      isForRent: req.body.isForRent,
       isLand: req.body.isLand,
       location: req.body.location, // District, Sector
-      shareIds: req.body.shareIds,
       bedrooms: req.body.bedrooms,
       bathrooms: req.body.bathrooms,
-      ratings: req.body.ratings,
-      userId: req.user.id
-    }
-    const data = await propertiesDB.saveProperty(nproperty)
+      isSold: req.body.isSold,
+      hasPool: req.body.hasPool,
+      appliances: req.body.appliances,
+      yearBuilt: req.body.yearBuilt,
+      AC: req.body.AC,
+      YTUrl: req.body.YTUrl,
+      userId: req.user.id }
+    const data = await propertiesDB.saveProperty(nProperty)
     res.status(201).json({
       status: 201,
       message: 'property created successfully',
