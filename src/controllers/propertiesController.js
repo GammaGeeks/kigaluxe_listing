@@ -159,6 +159,7 @@ class propertiesController {
         error: "passed wrong id"
       })
     }
+    const updatedAt = Date.now()
     const entry = { title: req.body.title,
       imageIds: req.body.imageIds,
       details: req.body.details,
@@ -178,7 +179,8 @@ class propertiesController {
       yearBuilt: req.body.yearBuilt,
       AC: req.body.AC,
       YTUrl: req.body.YTUrl,
-      userId: req.user.id }
+      userId: req.user.id,
+      updatedAt }
     const newProp = await propertiesDB.updateProperty(req.params.id, entry)
     if (!newProp[0]) {
       res.status(400).json({
