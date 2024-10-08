@@ -13,53 +13,53 @@ class propertiesController {
   static async getProperties(req, res) {
     const page = parseInt(req.query.page, 10) || 1
     const limit = parseInt(req.query.limit, 10) || 5
+    const nproperty = await propertiesDB.getAllProperties()
+
+    // Generate all image URLs concurrently
+    const urls = await Promise.all(
+      nproperty.map(async (prop) => {
+        const shortUrls = await Promise.all(
+          prop.imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
+        );
+        return shortUrls;
+      })
+    );
+    const rates = nproperty.map((prop) => prop.dataValues.rates);
+
+    // Construct property data with generated URLs
+    const property_data = nproperty.map((prop, index) => {
+      const { id, title, userId, imageIds, details, price, property_type,
+        property_size, hasParking, isForSale, isForRent, isLand, location, YTUrl,
+        bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
+      return {
+        id,
+        title,
+        userId,
+        imageIds,
+        imageUrl: urls[index],
+        details,
+        price,
+        property_type,
+        property_size,
+        hasParking,
+        isForSale,
+        isForRent,
+        isLand,
+        location,
+        bedrooms,
+        bathrooms,
+        isSold,
+        hasPool,
+        appliances,
+        yearBuilt,
+        AC,
+        rates: rates[index],
+        YTUrl,
+        createdAt,
+        updatedAt
+      };
+    });
     try {
-      const nproperty = await propertiesDB.getAllProperties()
-
-      // Generate all image URLs concurrently
-      const urls = await Promise.all(
-        nproperty.map(async (prop) => {
-          const shortUrls = await Promise.all(
-            prop.imageIds.map((imageId) => s3_helper.newLevelUrl(imageId))
-          );
-          return shortUrls;
-        })
-      );
-      const rates = nproperty.map((prop) => prop.dataValues.rates);
-
-      // Construct property data with generated URLs
-      const property_data = nproperty.map((prop, index) => {
-        const { id, title, userId, imageIds, details, price, property_type,
-          property_size, hasParking, isForSale, isForRent, isLand, location, YTUrl,
-          bedrooms, bathrooms, hasPool, appliances, yearBuilt, AC, isSold, createdAt, updatedAt } = prop;
-        return {
-          id,
-          title,
-          userId,
-          imageIds,
-          imageUrl: urls[index],
-          details,
-          price,
-          property_type,
-          property_size,
-          hasParking,
-          isForSale,
-          isForRent,
-          isLand,
-          location,
-          bedrooms,
-          bathrooms,
-          isSold,
-          hasPool,
-          appliances,
-          yearBuilt,
-          AC,
-          rates: rates[index],
-          YTUrl,
-          createdAt,
-          updatedAt
-        };
-      });
       const paginated = paginator(property_data, page, limit)
       return res.json({
         status: 200,
@@ -70,7 +70,8 @@ class propertiesController {
       return res.status(500).json({
         status: 500,
         message: "An error occurred",
-        error: error.message
+        error: error.message,
+        test: property_data
       });
     }
   }
