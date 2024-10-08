@@ -56,8 +56,8 @@ class placeController {
   static async updatePlace(req, res) {
     // initialising variables we need
     const id = req.params.id
-    const value = req.query.value
-    const column = req.query.column
+    const { province, district, sector, knownName, description } = req.body
+    const entry = { province, district, sector, knownName, description }
 
     // handling emptyness scenarios
     if (!await placeDB.findPlaceById(id)) {
@@ -66,25 +66,12 @@ class placeController {
         error: `no place with id:${id} found`
       })
     }
-    if (!value) {
-      return res.status(403).json({
-        status: 403,
-        error: 'value can\'t be empty'
-      })
-    }
-
-    if (!column) {
-      return res.status(403).json({
-        status: 403,
-        error: 'column can\'t be empty'
-      })
-    }
 
     try {
-      await placeDB.updatePlace(id, column, value)
+      await placeDB.updatePlace(id, entry)
       res.json({
         status: 200,
-        message: `${column} updated successfully`
+        message: `place with id ${id} updated successfully`
       })
     } catch (error) {
       res.status(500).json({
