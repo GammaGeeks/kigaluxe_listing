@@ -52,9 +52,9 @@ class placeDB {
     return places
   }
 
-  static async updatePlace(id, column, value) {
+  static async updatePlace(id, entry) {
     const updated = await place.update(
-      { [column]: value, updatedAt: new Date() },
+      { ...entry, updatedAt: new Date() },
       { where: { id } })
     return updated
   }
