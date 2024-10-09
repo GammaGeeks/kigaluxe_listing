@@ -190,7 +190,7 @@ class propertiesController {
     } else {
       res.status(200).json({
         status: 200,
-        message: `property with ${req.user.id} updated successfully`
+        message: `property with ${req.params.id} updated successfully`
       })
     }
   }
